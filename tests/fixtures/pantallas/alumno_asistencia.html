@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="csrf-token" content="TOKEN">
+    <meta name="theme-color" content="#061b52">
+    <title>Mi asistencia</title>
+
+    <script>
+        try {
+            if (!sessionStorage.getItem('se-menu-visto')) {
+                document.documentElement.classList.add('se-primera');
+                sessionStorage.setItem('se-menu-visto', '1');
+            }
+        } catch (e) {}
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="http://localhost/css/tema.css?v=VERSION">
+
+    </head>
+
+
+<body class="se-rol-alumno">
+    <div class="se-overlay" data-se-overlay aria-hidden="true"></div>
+
+    <aside class="se-sidebar" id="se-sidebar">
+        <div class="se-marca">
+            <svg class="se-marca-icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3 8.5 12 4l9 4.5L12 13 3 8.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="M6 10.2V15c0 1.6 2.7 3.5 6 3.5s6-1.9 6-3.5v-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M21 9v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            <div>
+                <div class="se-marca-titulo">Sistema Escolar</div>
+                            </div>
+        </div>
+
+        <nav class="se-menu" data-se-menu aria-label="Navegación del alumno">
+                                            <a href="http://localhost/alumno/inicio"
+                   class=""
+                   style="--i: 0"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M3 11.2 12 4l9 7.2M5.5 9.8V20h13V9.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Inicio</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/alumno/notas"
+                   class=""
+                   style="--i: 1"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M7 3.5h7.5L19 8v12a.5.5 0 0 1-.5.5h-11A.5.5 0 0 1 7 20V4a.5.5 0 0 1 0-.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M14 3.5V8h4.5M9.5 12.5h5M9.5 15.5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Mis notas</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/alumno/asistencia"
+                   class="activo"
+                   style="--i: 2"
+                    aria-current="page" >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M4 20V10M10 20V4M16 20v-7M4 20h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Mi asistencia</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/alumno/historial"
+                   class=""
+                   style="--i: 3"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M4.5 5.2A2.2 2.2 0 0 1 6.7 3h10.8v16.5H6.7A2.2 2.2 0 0 0 4.5 21.7V5.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M4.5 18.2A2.2 2.2 0 0 1 6.7 16h10.8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Historial académico</span>
+                                            </span>
+                </a>
+                    </nav>
+
+        <div class="se-sidebar-pie">
+                            <div class="se-perfil">
+                    <span class="se-perfil-avatar">EE</span>
+                    <div class="se-perfil-info">
+                        <div class="se-perfil-nombre">Emilce Espinola</div>
+                        <div class="se-perfil-detalle">Alumno · 3° A · Legajo 2026-1001</div>
+                    </div>
+                </div>
+
+            <form class="se-form-salir" method="POST" action="http://localhost/logout" data-se-salir>
+                <input type="hidden" name="_token" value="TOKEN" autocomplete="off">                <button class="se-salir" type="submit">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M10 5H5.5A1.5 1.5 0 0 0 4 6.5v11A1.5 1.5 0 0 0 5.5 19H10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        <path d="m14 8 4 4-4 4M18 12H9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Cerrar sesión
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <div class="se-main">
+        <header class="se-topbar">
+            <button class="se-toggle" type="button" data-se-toggle aria-controls="se-sidebar" aria-label="Abrir o cerrar menú" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+            </button>
+
+            <div class="se-topbar-titulo">
+                            </div>
+
+            <div class="se-topbar-acciones">
+
+                                    <span class="se-campana" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9a6 6 0 0 1 12 0c0 4 1.5 5.5 1.5 5.5h-15S6 13 6 9Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10 18a2 2 0 0 0 4 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                        </svg>
+                        <span class="se-campana-punto"></span>
+                    </span>
+
+                <div class="se-usuario">
+                    <button class="se-usuario-boton" type="button" data-se-user-toggle aria-haspopup="true" aria-expanded="false">
+                        <span class="se-avatar">EE</span>
+
+                        <span class="se-usuario-datos">
+                            <span class="se-usuario-nombre">Emilce Espinola</span>
+                            <span class="se-usuario-rol">Legajo: 2026-1001</span>
+                        </span>
+
+                        <svg class="se-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <div class="se-usuario-menu" data-se-user-menu>
+                        <form method="POST" action="http://localhost/logout" data-se-salir>
+                            <input type="hidden" name="_token" value="TOKEN" autocomplete="off">                            <button type="submit">Cerrar sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="se-contenido">
+
+<header class="se-saludo">
+    <div>
+        <h1>Mi asistencia</h1>
+        <p>Consultá tu asistencia por materia y período académico.</p>
+    </div>
+            <span class="se-badge se-badge--claro">Bueno</span>
+    </header>
+
+<section class="se-stats" aria-label="Resumen de asistencia">
+    <article class="se-stat se-c-verde">
+        <span class="se-stat-icono">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M8 6h8a2 2 0 0 1 2 2v11l-2-1.3L14 19l-2-1.3L10 19l-2-1.3L6 19V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="m9.5 12 1.8 1.8L14.5 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+        <div class="se-stat-cuerpo">
+            <span class="se-stat-titulo">Asistencia general</span>
+            <span class="se-stat-valor" data-se-contar>85.71%</span>
+            <span class="se-stat-pie">6 de 7 clases</span>
+        </div>
+    </article>
+
+    <article class="se-stat se-c-azul">
+        <span class="se-stat-icono">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 3.5h7.5L19 8v12a.5.5 0 0 1-.5.5h-11A.5.5 0 0 1 7 20V4a.5.5 0 0 1 0-.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="M14 3.5V8h4.5M9.5 12.5h5M9.5 15.5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+        </span>
+        <div class="se-stat-cuerpo">
+            <span class="se-stat-titulo">Clases asistidas</span>
+            <span class="se-stat-valor" data-se-contar>6</span>
+            <span class="se-stat-pie">de 7 clases</span>
+        </div>
+    </article>
+
+    <article class="se-stat se-c-rojo">
+        <span class="se-stat-icono">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 3.5h7.5L19 8v12a.5.5 0 0 1-.5.5h-11A.5.5 0 0 1 7 20V4a.5.5 0 0 1 0-.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="m10 12.5 4 4m0-4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+        </span>
+        <div class="se-stat-cuerpo">
+            <span class="se-stat-titulo">Inasistencias</span>
+            <span class="se-stat-valor" data-se-contar>1</span>
+            <span class="se-stat-pie">clases</span>
+        </div>
+    </article>
+
+    <article class="se-stat se-c-violeta">
+        <span class="se-stat-icono">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4.5 5.2A2.2 2.2 0 0 1 6.7 3h10.8v16.5H6.7A2.2 2.2 0 0 0 4.5 21.7V5.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="M4.5 18.2A2.2 2.2 0 0 1 6.7 16h10.8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            </svg>
+        </span>
+        <div class="se-stat-cuerpo">
+            <span class="se-stat-titulo">Materias</span>
+            <span class="se-stat-valor" data-se-contar>2</span>
+            <span class="se-stat-pie">materias cursadas</span>
+        </div>
+    </article>
+</section>
+
+<div class="se-ga-fila">
+
+        <section class="se-panel se-elevar se-c-verde">
+            <div class="se-panel-cab">
+                <h2>Presentes, tardanzas y ausentes</h2>
+                <span class="se-badge se-badge--info se-badge--sin-punto">7 registros</span>
+            </div>
+
+            <div class="se-ga-anillo-caja">
+                <svg class="se-ga-svg se-ga-anillo" viewBox="0 0 120 120" role="img" aria-labelledby="se-ga-anillo-t se-ga-anillo-d">
+                    <title id="se-ga-anillo-t">Distribución de la asistencia</title>
+                    <desc id="se-ga-anillo-d">Presentes: 5 (71.4%). Tardanzas: 1 (14.3%). Ausentes: 1 (14.3%).</desc>
+                    <circle class="se-ga-anillo-fondo" cx="60" cy="60" r="46" />
+                    <g transform="rotate(-90 60 60)">
+                                                                                    <circle class="se-ga-seg se-c-verde" style="--i: 0" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="70.23 100" stroke-dashoffset="-0.6">
+                                    <title>Presentes: 5 (71.4%)</title>
+                                </circle>
+                                                                                                                <circle class="se-ga-seg se-c-naranja" style="--i: 1" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="13.09 100" stroke-dashoffset="-72.03">
+                                    <title>Tardanzas: 1 (14.3%)</title>
+                                </circle>
+                                                                                                                <circle class="se-ga-seg se-c-rojo" style="--i: 2" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="13.09 100" stroke-dashoffset="-86.31">
+                                    <title>Ausentes: 1 (14.3%)</title>
+                                </circle>
+                                                                        </g>
+                    <text class="se-ga-centro" x="60" y="62">85.71%</text>
+                    <text class="se-ga-centro-sub" x="60" y="75">de asistencia</text>
+                </svg>
+
+                <ul class="se-ga-leyenda">
+                                            <li class="se-c-verde">
+                            <i class="se-ga-dot"></i>
+                            <span>Presentes</span>
+                            <b>5</b>
+                            <small>71.4%</small>
+                        </li>
+                                            <li class="se-c-naranja">
+                            <i class="se-ga-dot"></i>
+                            <span>Tardanzas</span>
+                            <b>1</b>
+                            <small>14.3%</small>
+                        </li>
+                                            <li class="se-c-rojo">
+                            <i class="se-ga-dot"></i>
+                            <span>Ausentes</span>
+                            <b>1</b>
+                            <small>14.3%</small>
+                        </li>
+                                    </ul>
+            </div>
+
+            <p class="se-ga-pie">Cuenta como asistidas las presencias y las tardanzas.</p>
+        </section>
+
+
+        <section class="se-panel se-elevar se-c-azul">
+            <div class="se-panel-cab">
+                <h2>Asistencia de lunes a viernes</h2>
+            </div>
+
+            <div class="se-ga-cuerpo">
+                <svg class="se-ga-svg" viewBox="0 0 360 232" role="img" aria-labelledby="se-ga-barras-t se-ga-barras-d">
+                    <title id="se-ga-barras-t">Asistencia según el día de la semana</title>
+                    <desc id="se-ga-barras-d">Lunes: 100%. Martes: 100%. Miércoles: 100%. Jueves: 0%. Viernes: 100%.</desc>
+
+                                            <line class="se-ga-rejilla se-ga-rejilla--base" x1="40" x2="350" y1="196" y2="196" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="200">0%</text>
+                                            <line class="se-ga-rejilla " x1="40" x2="350" y1="153.5" y2="153.5" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="157.5">25%</text>
+                                            <line class="se-ga-rejilla " x1="40" x2="350" y1="111" y2="111" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="115">50%</text>
+                                            <line class="se-ga-rejilla " x1="40" x2="350" y1="68.5" y2="68.5" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="72.5">75%</text>
+                                            <line class="se-ga-rejilla " x1="40" x2="350" y1="26" y2="26" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="30">100%</text>
+
+                    <line class="se-ga-min" x1="40" x2="350" y1="77" y2="77">
+                        <title>Mínimo requerido: 70%</title>
+                    </line>
+
+                                                                                                                            <rect class="se-ga-barra se-c-azul" style="--i: 0" x="52" y="26" width="38" height="170" rx="7">
+                                <title>Lunes: 100% (2 registros)</title>
+                            </rect>
+                            <text class="se-ga-barra-valor" style="--i: 0" x="71" y="19">100%</text>
+                                                <text class="se-ga-eje se-ga-eje--x" x="71" y="220">Lun</text>
+                                                                                                                            <rect class="se-ga-barra se-c-azul" style="--i: 1" x="114" y="26" width="38" height="170" rx="7">
+                                <title>Martes: 100% (2 registros)</title>
+                            </rect>
+                            <text class="se-ga-barra-valor" style="--i: 1" x="133" y="19">100%</text>
+                                                <text class="se-ga-eje se-ga-eje--x" x="133" y="220">Mar</text>
+                                                                                                                            <rect class="se-ga-barra se-c-azul" style="--i: 2" x="176" y="26" width="38" height="170" rx="7">
+                                <title>Miércoles: 100% (1 registro)</title>
+                            </rect>
+                            <text class="se-ga-barra-valor" style="--i: 2" x="195" y="19">100%</text>
+                                                <text class="se-ga-eje se-ga-eje--x" x="195" y="220">Mié</text>
+                                                                                                                            <rect class="se-ga-barra se-c-naranja" style="--i: 3" x="238" y="194" width="38" height="2" rx="7">
+                                <title>Jueves: 0% (1 registro)</title>
+                            </rect>
+                            <text class="se-ga-barra-valor" style="--i: 3" x="257" y="187">0%</text>
+                                                <text class="se-ga-eje se-ga-eje--x" x="257" y="220">Jue</text>
+                                                                                                                            <rect class="se-ga-barra se-c-azul" style="--i: 4" x="300" y="26" width="38" height="170" rx="7">
+                                <title>Viernes: 100% (1 registro)</title>
+                            </rect>
+                            <text class="se-ga-barra-valor" style="--i: 4" x="319" y="19">100%</text>
+                                                <text class="se-ga-eje se-ga-eje--x" x="319" y="220">Vie</text>
+                                    </svg>
+            </div>
+
+            <p class="se-ga-pie">
+                <span class="se-ga-clave-min" aria-hidden="true"></span>Mínimo requerido: <strong>70%</strong>.
+                Las barras naranjas quedan por debajo.
+            </p>
+        </section>
+    </div>
+
+
+    <section class="se-panel se-elevar se-c-azul">
+        <div class="se-panel-cab">
+            <h2>Evolución de las últimas 8 semanas</h2>
+        </div>
+
+        <div class="se-ga-cuerpo">
+            <div class="se-ga-scroll" tabindex="0" role="region" aria-label="Gráfico de evolución semanal">
+                <svg class="se-ga-svg se-ga-svg--linea" viewBox="0 0 720 240" role="img" aria-labelledby="se-ga-linea-t se-ga-linea-d">
+                    <title id="se-ga-linea-t">Evolución semanal de la asistencia</title>
+                    <desc id="se-ga-linea-d">Semana del 24/08: sin registros. Semana del 31/08: sin registros. Semana del 07/09: sin registros. Semana del 14/09: 100%. Semana del 21/09: sin registros. Semana del 28/09: sin registros. Semana del 05/10: 80%. Semana del 12/10: 100%.</desc>
+                    <defs>
+                        <linearGradient id="se-ga-degradado" x1="0" y1="0" x2="0" y2="1">
+                            <stop class="se-ga-degradado-ini" offset="0" />
+                            <stop class="se-ga-degradado-fin" offset="1" />
+                        </linearGradient>
+                    </defs>
+
+                                            <line class="se-ga-rejilla se-ga-rejilla--base" x1="46" x2="702" y1="196" y2="196" />
+                        <text class="se-ga-eje se-ga-eje--y" x="36" y="200">0%</text>
+                                            <line class="se-ga-rejilla " x1="46" x2="702" y1="154" y2="154" />
+                        <text class="se-ga-eje se-ga-eje--y" x="36" y="158">25%</text>
+                                            <line class="se-ga-rejilla " x1="46" x2="702" y1="112" y2="112" />
+                        <text class="se-ga-eje se-ga-eje--y" x="36" y="116">50%</text>
+                                            <line class="se-ga-rejilla " x1="46" x2="702" y1="70" y2="70" />
+                        <text class="se-ga-eje se-ga-eje--y" x="36" y="74">75%</text>
+                                            <line class="se-ga-rejilla " x1="46" x2="702" y1="28" y2="28" />
+                        <text class="se-ga-eje se-ga-eje--y" x="36" y="32">100%</text>
+
+                    <line class="se-ga-min" x1="46" x2="702" y1="78.4" y2="78.4">
+                        <title>Mínimo requerido: 70%</title>
+                    </line>
+
+                                            <path class="se-ga-area" d="M579 196 L579 61.6 L661 28 L661 196 Z" fill="url(#se-ga-degradado)" />
+
+                                            <path class="se-ga-curva" d="M579 61.6 L661 28" pathLength="1" />
+
+                                            <text class="se-ga-eje se-ga-eje--x" x="87" y="226">24/08</text>
+
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="169" y="226">31/08</text>
+
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="251" y="226">07/09</text>
+
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="333" y="226">14/09</text>
+
+                                                    <circle class="se-ga-nodo se-c-azul" style="--i: 3" cx="333" cy="28" r="5.5">
+                                <title>Semana del 14/09: 100% (1 registro)</title>
+                            </circle>
+                            <text class="se-ga-valor" style="--i: 3" x="333" y="15">100%</text>
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="415" y="226">21/09</text>
+
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="497" y="226">28/09</text>
+
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="579" y="226">05/10</text>
+
+                                                    <circle class="se-ga-nodo se-c-azul" style="--i: 6" cx="579" cy="61.6" r="5.5">
+                                <title>Semana del 05/10: 80% (5 registros)</title>
+                            </circle>
+                            <text class="se-ga-valor" style="--i: 6" x="579" y="48.6">80%</text>
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="661" y="226">12/10</text>
+
+                                                    <circle class="se-ga-nodo se-c-azul" style="--i: 7" cx="661" cy="28" r="5.5">
+                                <title>Semana del 12/10: 100% (1 registro)</title>
+                            </circle>
+                            <text class="se-ga-valor" style="--i: 7" x="661" y="15">100%</text>
+                                                            </svg>
+            </div>
+        </div>
+
+        <p class="se-ga-pie">
+            Cada punto es la asistencia de la semana que empieza el lunes indicado; las semanas sin registros quedan sin punto.
+            <span class="se-ga-clave-min" aria-hidden="true"></span>Mínimo requerido: <strong>70%</strong>.
+            Cuenta como asistidas las presencias y las tardanzas.
+        </p>
+    </section>
+
+    <section class="se-panel se-elevar se-c-azul">
+        <div class="se-panel-cab">
+            <h2>Asistencia por materia</h2>
+        </div>
+
+        <div class="se-tabla-wrap" tabindex="0" role="region" aria-label="Asistencia por materia">
+            <table class="se-tabla">
+                <thead>
+                    <tr>
+                        <th>Materia</th>
+                        <th>Clases</th>
+                        <th>Asistidas</th>
+                        <th>Inasistencias</th>
+                        <th>Porcentaje</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                            <tr>
+                            <td><span class="se-tabla-titulo">Física</span></td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>
+                                                                    <span class="se-progreso se-c-rojo">
+                                        <span class="se-progreso-barra"><i style="--w: 50%"></i></span>
+                                        <span class="se-progreso-num">50.00%</span>
+                                    </span>
+                                                            </td>
+                            <td>
+                                                                    <span class="se-badge se-badge--reprobado">Malo</span>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <td><span class="se-tabla-titulo">Matemática</span></td>
+                            <td>5</td>
+                            <td>5</td>
+                            <td>0</td>
+                            <td>
+                                                                    <span class="se-progreso se-c-verde">
+                                        <span class="se-progreso-barra"><i style="--w: 100%"></i></span>
+                                        <span class="se-progreso-num">100.00%</span>
+                                    </span>
+                                                            </td>
+                            <td>
+                                                                    <span class="se-badge se-badge--aprobado">Excelente</span>
+                                                            </td>
+                        </tr>
+                                    </tbody>
+            </table>
+        </div>
+
+        <p class="se-ga-pie">El porcentaje de asistencia mínimo requerido para aprobar es <strong>70%</strong>.</p>
+    </section>
+
+<div class="se-columnas">
+    <div>
+        <section class="se-panel se-elevar se-c-verde">
+            <div class="se-panel-cab">
+                <h2>Asistencia por fecha</h2>
+            </div>
+
+                            <div class="se-dias">
+                                            <div class="se-dia se-c-verde" title="15/09/2026">
+                            <span class="se-dia-semana">M</span>
+                            <span class="se-dia-numero">15</span>
+                            <span class="se-dia-icono" role="img" aria-label="Asististe">
+                                                                    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.5 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                                                            </span>
+                        </div>
+                                            <div class="se-dia se-c-verde" title="05/10/2026">
+                            <span class="se-dia-semana">L</span>
+                            <span class="se-dia-numero">05</span>
+                            <span class="se-dia-icono" role="img" aria-label="Asististe">
+                                                                    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.5 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                                                            </span>
+                        </div>
+                                            <div class="se-dia se-c-verde" title="06/10/2026">
+                            <span class="se-dia-semana">M</span>
+                            <span class="se-dia-numero">06</span>
+                            <span class="se-dia-icono" role="img" aria-label="Asististe">
+                                                                    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.5 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                                                            </span>
+                        </div>
+                                            <div class="se-dia se-c-verde" title="07/10/2026">
+                            <span class="se-dia-semana">X</span>
+                            <span class="se-dia-numero">07</span>
+                            <span class="se-dia-icono" role="img" aria-label="Asististe">
+                                                                    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.5 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                                                            </span>
+                        </div>
+                                            <div class="se-dia se-c-rojo" title="08/10/2026">
+                            <span class="se-dia-semana">J</span>
+                            <span class="se-dia-numero">08</span>
+                            <span class="se-dia-icono" role="img" aria-label="Inasistencia">
+                                                                    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 4 8 8m0-8-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+                                                            </span>
+                        </div>
+                                            <div class="se-dia se-c-verde" title="09/10/2026">
+                            <span class="se-dia-semana">V</span>
+                            <span class="se-dia-numero">09</span>
+                            <span class="se-dia-icono" role="img" aria-label="Asististe">
+                                                                    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.5 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                                                            </span>
+                        </div>
+                                            <div class="se-dia se-c-verde" title="12/10/2026">
+                            <span class="se-dia-semana">L</span>
+                            <span class="se-dia-numero">12</span>
+                            <span class="se-dia-icono" role="img" aria-label="Asististe">
+                                                                    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.5 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                                                            </span>
+                        </div>
+                                    </div>
+
+                <div class="se-dias-leyenda">
+                    <span class="se-c-verde"><i class="se-ga-dot"></i> Asististe</span>
+                    <span class="se-c-rojo"><i class="se-ga-dot"></i> Inasistencia</span>
+                </div>
+                    </section>
+    </div>
+
+    <div>
+        <section class="se-panel se-elevar se-c-rojo">
+            <div class="se-panel-cab">
+                <h2>Detalle de inasistencias</h2>
+                                    <span class="se-badge se-badge--reprobado se-badge--sin-punto">1 clase</span>
+                            </div>
+
+                            <ul class="se-lista">
+                                            <li class="se-lista-item">
+                            <div>
+                                <strong>Física</strong>
+                                <p class="se-lista-detalle">08/10/2026</p>
+                            </div>
+                            <span class="se-badge se-badge--reprobado">Inasistencia</span>
+                        </li>
+                                    </ul>
+
+                                    </section>
+    </div>
+</div>
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            var cuerpo = document.body;
+            var toggle = document.querySelector('[data-se-toggle]');
+            var overlay = document.querySelector('[data-se-overlay]');
+            var userBtn = document.querySelector('[data-se-user-toggle]');
+            var userMenu = document.querySelector('[data-se-user-menu]');
+            var movil = window.matchMedia('(max-width: 900px)');
+
+            function menu(abrir) {
+                cuerpo.classList.toggle('se-menu-abierto', abrir);
+                if (toggle) toggle.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+            }
+
+            function usuario(abrir) {
+                if (!userBtn || !userMenu) return;
+                userMenu.classList.toggle('abierto', abrir);
+                userBtn.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+            }
+
+            if (toggle) {
+                toggle.addEventListener('click', function () {
+                    menu(!cuerpo.classList.contains('se-menu-abierto'));
+                });
+            }
+
+            if (overlay) {
+                overlay.addEventListener('click', function () { menu(false); });
+            }
+
+            if (userBtn && userMenu) {
+                userBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    usuario(!userMenu.classList.contains('abierto'));
+                });
+
+                document.addEventListener('click', function (e) {
+                    if (!userMenu.contains(e.target)) usuario(false);
+                });
+            }
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key !== 'Escape') return;
+                var estabaAbierto = cuerpo.classList.contains('se-menu-abierto');
+                menu(false);
+                usuario(false);
+                if (estabaAbierto && toggle) toggle.focus();
+            });
+
+            var alCambiar = function (e) { if (!e.matches) menu(false); };
+            if (movil.addEventListener) movil.addEventListener('change', alCambiar);
+            else if (movil.addListener) movil.addListener(alCambiar);
+
+            window.addEventListener('pageshow', function () { menu(false); usuario(false); });
+
+            // Al cerrar sesión, la próxima entrada vuelve a mostrar la animación escalonada del menú.
+            document.querySelectorAll('[data-se-salir]').forEach(function (f) {
+                f.addEventListener('submit', function () {
+                    try { sessionStorage.removeItem('se-menu-visto'); } catch (e) {}
+                });
+            });
+        })();
+    </script>
+
+    <script src="http://localhost/js/tema.js" defer></script>
+
+    <script>
+    function mostrarTodasInasistencias(boton) {
+        const extra = document.getElementById('masis-inasistencias-extra');
+        extra.style.display = 'block';
+        boton.style.display = 'none';
+    }
+</script>
+</body>
+</html>

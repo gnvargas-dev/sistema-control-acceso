@@ -1,0 +1,54 @@
+{
+    "tipo": 2,
+    "titulo": "Reporte Comparativo por Curso",
+    "filtros": {
+        "desde": "2026-09-01 00:00:00",
+        "hasta": "2026-10-12 23:59:59",
+        "curso_id": null,
+        "desde_anterior": "2026-07-20 00:00:00",
+        "hasta_anterior": "2026-08-31 23:59:59"
+    },
+    "generadoEl": "2026-10-12 10:00:00",
+    "cursos": [
+        {
+            "curso": {
+                "id": 1,
+                "nombre": "A",
+                "anio": 3,
+                "created_at": "2026-10-01T11:00:00.000000Z",
+                "updated_at": "2026-10-01T11:00:00.000000Z"
+            },
+            "matricula": 2,
+            "asistencia": 57.1,
+            "promedio": 3,
+            "mejor": {
+                "nombre": "Emilce Espinola",
+                "promedio": 4.67
+            },
+            "menor": {
+                "nombre": "Ricardo Ortiz",
+                "promedio": 1.33
+            }
+        },
+        {
+            "curso": {
+                "id": 2,
+                "nombre": "B",
+                "anio": 2,
+                "created_at": "2026-10-01T11:00:00.000000Z",
+                "updated_at": "2026-10-01T11:00:00.000000Z"
+            },
+            "matricula": 2,
+            "asistencia": 50,
+            "promedio": 2.5,
+            "mejor": {
+                "nombre": "Armando Velazco",
+                "promedio": 4
+            },
+            "menor": {
+                "nombre": "Bautista Gavilán",
+                "promedio": 1
+            }
+        }
+    ]
+}

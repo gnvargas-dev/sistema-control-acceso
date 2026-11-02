@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="csrf-token" content="TOKEN">
+    <meta name="theme-color" content="#061b52">
+    <title>Reportes y estadísticas</title>
+
+    <script>
+        try {
+            if (!sessionStorage.getItem('se-menu-visto')) {
+                document.documentElement.classList.add('se-primera');
+                sessionStorage.setItem('se-menu-visto', '1');
+            }
+        } catch (e) {}
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="http://localhost/css/tema.css?v=VERSION">
+
+    </head>
+
+
+<body class="se-rol-admin">
+    <div class="se-overlay" data-se-overlay aria-hidden="true"></div>
+
+    <aside class="se-sidebar" id="se-sidebar">
+        <div class="se-marca">
+            <svg class="se-marca-icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3 8.5 12 4l9 4.5L12 13 3 8.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="M6 10.2V15c0 1.6 2.7 3.5 6 3.5s6-1.9 6-3.5v-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M21 9v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            <div>
+                <div class="se-marca-titulo">Sistema Escolar</div>
+                            </div>
+        </div>
+
+        <nav class="se-menu" data-se-menu aria-label="Navegación principal">
+                                            <a href="http://localhost/admin/inicio"
+                   class=""
+                   style="--i: 0"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M3 11.2 12 4l9 7.2M5.5 9.8V20h13V9.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Inicio</span>
+                                                    <span class="se-menu-subtitulo">Panel de control</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/admin/usuarios"
+                   class=""
+                   style="--i: 1"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM17.5 19v-1.5a3.5 3.5 0 0 0-2.3-3.29M14.5 5.1a3 3 0 0 1 0 5.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Usuarios</span>
+                                                    <span class="se-menu-subtitulo">Gestionar usuarios del sistema</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/admin/boletines"
+                   class=""
+                   style="--i: 2"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M7 3.5h7.5L19 8v12a.5.5 0 0 1-.5.5h-11A.5.5 0 0 1 7 20V4a.5.5 0 0 1 0-.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M14 3.5V8h4.5M9.5 12.5h5M9.5 15.5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Boletines</span>
+                                                    <span class="se-menu-subtitulo">Generar boletines en PDF</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/admin/reportes"
+                   class="activo"
+                   style="--i: 3"
+                    aria-current="page" >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M4 20V10M10 20V4M16 20v-7M4 20h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Reportes</span>
+                                                    <span class="se-menu-subtitulo">Reportes y estadísticas</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/admin/materias"
+                   class=""
+                   style="--i: 4"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M4.5 5.2A2.2 2.2 0 0 1 6.7 3h10.8v16.5H6.7A2.2 2.2 0 0 0 4.5 21.7V5.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M4.5 18.2A2.2 2.2 0 0 1 6.7 16h10.8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Materias</span>
+                                                    <span class="se-menu-subtitulo">Gestionar materias</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/admin/legajos"
+                   class=""
+                   style="--i: 5"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M3.5 6.5A1.5 1.5 0 0 1 5 5h4.2l1.8 2h8a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 19 19H5a1.5 1.5 0 0 1-1.5-1.5v-11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Legajos</span>
+                                                    <span class="se-menu-subtitulo">Gestión de legajos</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/admin/alumnos"
+                   class=""
+                   style="--i: 6"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M2.5 9 12 4.5 21.5 9 12 13.5 2.5 9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M6.5 11v4.2c0 1.1 2.5 2.3 5.5 2.3s5.5-1.2 5.5-2.3V11M21.5 9v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Alumnos</span>
+                                                    <span class="se-menu-subtitulo">Registro de todos los alumnos</span>
+                                            </span>
+                </a>
+                    </nav>
+
+        <div class="se-sidebar-pie">
+
+            <form class="se-form-salir" method="POST" action="http://localhost/logout" data-se-salir>
+                <input type="hidden" name="_token" value="TOKEN" autocomplete="off">                <button class="se-salir" type="submit">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M10 5H5.5A1.5 1.5 0 0 0 4 6.5v11A1.5 1.5 0 0 0 5.5 19H10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        <path d="m14 8 4 4-4 4M18 12H9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Cerrar sesión
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <div class="se-main">
+        <header class="se-topbar">
+            <button class="se-toggle" type="button" data-se-toggle aria-controls="se-sidebar" aria-label="Abrir o cerrar menú" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+            </button>
+
+            <div class="se-topbar-titulo">
+                                    <h1>¡Bienvenido, Ana Administradora!</h1>
+                    <p>Administrador</p>
+                            </div>
+
+            <div class="se-topbar-acciones">
+
+
+                <div class="se-usuario">
+                    <button class="se-usuario-boton" type="button" data-se-user-toggle aria-haspopup="true" aria-expanded="false">
+                        <span class="se-avatar">AA</span>
+
+                        <span class="se-usuario-datos">
+                            <span class="se-usuario-nombre">Ana Administradora</span>
+                            <span class="se-usuario-rol">Administrador</span>
+                        </span>
+
+                        <svg class="se-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <div class="se-usuario-menu" data-se-user-menu>
+                        <form method="POST" action="http://localhost/logout" data-se-salir>
+                            <input type="hidden" name="_token" value="TOKEN" autocomplete="off">                            <button type="submit">Cerrar sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="se-contenido">
+            <header class="se-saludo se-ad-cab">
+    <div>
+        <h1>Reportes y estadísticas</h1>
+        <p>Indicadores académicos generales del colegio</p>
+    </div>
+</header>
+
+<form
+    method="GET"
+    action="http://localhost/admin/reportes"
+    class="se-ad-filtros se-ad-filtros--tarjeta"
+>
+    <div class="se-ad-filtro">
+        <label class="se-ad-label" for="reporte-desde">Desde</label>
+
+        <input
+            id="reporte-desde"
+            class="se-ad-input"
+            type="date"
+            name="desde"
+            value="2026-09-01"
+        >
+    </div>
+
+    <div class="se-ad-filtro">
+        <label class="se-ad-label" for="reporte-hasta">Hasta</label>
+
+        <input
+            id="reporte-hasta"
+            class="se-ad-input"
+            type="date"
+            name="hasta"
+            value="2026-10-12"
+        >
+    </div>
+
+    <div class="se-ad-filtro">
+        <label class="se-ad-label" for="reporte-curso">Curso</label>
+
+        <select
+            id="reporte-curso"
+            class="se-ad-input"
+            name="curso_id"
+        >
+            <option value="">Todos los cursos</option>
+
+                            <option
+                    value="1"
+                    selected                >
+                    3° A
+                </option>
+                            <option
+                    value="2"
+                                    >
+                    2° B
+                </option>
+                    </select>
+    </div>
+
+    <div class="se-ad-filtro-acciones">
+        <button class="se-btn se-btn--suave" type="submit">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+
+            Aplicar filtros
+        </button>
+
+        <div class="se-ad-menu export-wrap">
+            <button
+                class="se-btn"
+                type="button"
+                id="exportToggle"
+                aria-expanded="false"
+                aria-controls="exportMenu"
+            >
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 4v11M8 11l4 4 4-4M5 19h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+
+                Exportar reporte
+            </button>
+
+            <div
+                id="exportMenu"
+                class="se-ad-menu-lista"
+                hidden
+            >
+
+                <a class="se-ad-menu-item" href="http://localhost/admin/reportes/exportar?desde=2026-09-01&amp;hasta=2026-10-12&amp;curso_id=1&amp;tipo=1">
+                    Resumen ejecutivo institucional
+                    <small>Métricas generales y gráficos principales</small>
+                </a>
+                <a class="se-ad-menu-item" href="http://localhost/admin/reportes/exportar?desde=2026-09-01&amp;hasta=2026-10-12&amp;curso_id=1&amp;tipo=2">
+                    Comparativo por curso
+                    <small>Matrícula, asistencia y promedios por curso</small>
+                </a>
+                <a class="se-ad-menu-item" href="http://localhost/admin/reportes/exportar?desde=2026-09-01&amp;hasta=2026-10-12&amp;curso_id=1&amp;tipo=3">
+                    Cuadro de honor
+                    <small>Alumnos con los promedios más altos</small>
+                </a>
+                <a class="se-ad-menu-item" href="http://localhost/admin/reportes/exportar?desde=2026-09-01&amp;hasta=2026-10-12&amp;curso_id=1&amp;tipo=4">
+                    Alerta de riesgo académico
+                    <small>Promedio &lt; 2 o asistencia &lt; 70%</small>
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<section class="se-stats" aria-label="Indicadores generales">
+    <article class="se-stat se-c-azul">
+        <span class="se-stat-icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19M10 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM17 8a2.5 2.5 0 1 1 0 5M16 14.5a3.5 3.5 0 0 1 3 3.5v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+        <div class="se-stat-cuerpo">
+            <span class="se-stat-titulo">Total alumnos</span>
+            <span class="se-stat-valor">2</span>
+            <span class="se-stat-pie">Todos los cursos
+            </span>
+        </div>
+    </article>
+    <article class="se-stat se-c-verde">
+        <span class="se-stat-icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 19v-1.5A3.5 3.5 0 0 1 7.5 14h5a3.5 3.5 0 0 1 3.5 3.5V19M10 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM17 8a2.5 2.5 0 1 1 0 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+        <div class="se-stat-cuerpo">
+            <span class="se-stat-titulo">Total profesores</span>
+            <span class="se-stat-valor">2</span>
+            <span class="se-stat-pie">Personal docente
+            </span>
+        </div>
+    </article>
+    <article class="se-stat se-c-violeta">
+        <span class="se-stat-icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 18V7.5A2.5 2.5 0 0 1 6.5 5H20v14H6.5A2.5 2.5 0 0 0 4 21.5M4 18a2.5 2.5 0 0 1 2.5-2.5H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+        <div class="se-stat-cuerpo">
+            <span class="se-stat-titulo">Promedio general</span>
+            <span class="se-stat-valor">3.00</span>
+            <span class="se-stat-pie">vs. período anterior
+                            </span>
+        </div>
+    </article>
+    <article class="se-stat se-c-naranja">
+        <span class="se-stat-icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 19h16M6 16V9M10 16V5M14 16v-3M18 16V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+        <div class="se-stat-cuerpo">
+            <span class="se-stat-titulo">% asistencia general</span>
+            <span class="se-stat-valor">57.1%</span>
+            <span class="se-stat-pie">vs. período anterior
+                            </span>
+        </div>
+    </article>
+</section>
+
+
+<div class="se-ga-fila">
+    <section class="se-panel se-elevar se-c-verde">
+        <div class="se-panel-cab">
+            <h2>Asistencia general</h2>
+        </div>
+
+        <div class="se-ga-anillo-caja">
+            <svg class="se-ga-svg se-ga-anillo" viewBox="0 0 120 120" role="img" aria-labelledby="se-rg-asis-t se-rg-asis-d">
+                <title id="se-rg-asis-t">Asistencia general</title>
+                <desc id="se-rg-asis-d">Asistencias: 57.1%. Ausencias: 42.9%.</desc>
+                <circle class="se-ga-anillo-fondo" cx="60" cy="60" r="46" />
+                <g transform="rotate(-90 60 60)">
+                                                                        <circle class="se-ga-seg se-rg-1" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="55.9 100" stroke-dashoffset="-0.6">
+                                <title>Asistencias: 57.1%</title>
+                            </circle>
+                                                                                                <circle class="se-ga-seg se-rg-resto" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="41.7 100" stroke-dashoffset="-57.7">
+                                <title>Ausencias: 42.9%</title>
+                            </circle>
+                                                            </g>
+                <text class="se-ga-centro" x="60" y="62">57.1%</text>
+                <text class="se-ga-centro-sub" x="60" y="75">de asistencia</text>
+            </svg>
+
+            <ul class="se-ga-leyenda">
+                                    <li class="se-rg-1">
+                        <i class="se-ga-dot"></i>
+                        <span>Asistencias</span>
+                        <b>57.1%</b>
+                    </li>
+                                    <li class="se-rg-resto">
+                        <i class="se-ga-dot"></i>
+                        <span>Ausencias</span>
+                        <b>42.9%</b>
+                    </li>
+                            </ul>
+        </div>
+    </section>
+
+    <section class="se-panel se-elevar se-c-azul">
+        <div class="se-panel-cab">
+            <h2>Distribución de promedios</h2>
+            <span class="se-badge se-badge--info se-badge--sin-punto">2 alumnos</span>
+        </div>
+
+        <div class="se-ga-anillo-caja">
+            <svg class="se-ga-svg se-ga-anillo" viewBox="0 0 120 120" role="img" aria-labelledby="se-rg-dist-t se-rg-dist-d">
+                <title id="se-rg-dist-t">Distribución de promedios</title>
+                <desc id="se-rg-dist-d">4.5 - 5: 1 (50%). 3.5 - 4.4: 0 (0%). 2.5 - 3.4: 0 (0%). 1.5 - 2.4: 0 (0%). 1 - 1.4: 1 (50%).</desc>
+                <circle class="se-ga-anillo-fondo" cx="60" cy="60" r="46" />
+                <g transform="rotate(-90 60 60)">
+                                                                        <circle class="se-ga-seg se-rg-1" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="48.8 100" stroke-dashoffset="-0.6">
+                                <title>4.5 - 5: 1</title>
+                            </circle>
+                                                                                                                                                                                                                                    <circle class="se-ga-seg se-rg-5" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="48.8 100" stroke-dashoffset="-50.6">
+                                <title>1 - 1.4: 1</title>
+                            </circle>
+                                                            </g>
+                <text class="se-ga-centro" x="60" y="62">2</text>
+                <text class="se-ga-centro-sub" x="60" y="75">alumnos</text>
+            </svg>
+
+            <ul class="se-ga-leyenda">
+                                    <li class="se-rg-1">
+                        <i class="se-ga-dot"></i>
+                        <span>4.5 - 5</span>
+                        <b>1</b>
+                        <small>50%</small>
+                    </li>
+                                    <li class="se-rg-2">
+                        <i class="se-ga-dot"></i>
+                        <span>3.5 - 4.4</span>
+                        <b>0</b>
+                        <small>0%</small>
+                    </li>
+                                    <li class="se-rg-3">
+                        <i class="se-ga-dot"></i>
+                        <span>2.5 - 3.4</span>
+                        <b>0</b>
+                        <small>0%</small>
+                    </li>
+                                    <li class="se-rg-4">
+                        <i class="se-ga-dot"></i>
+                        <span>1.5 - 2.4</span>
+                        <b>0</b>
+                        <small>0%</small>
+                    </li>
+                                    <li class="se-rg-5">
+                        <i class="se-ga-dot"></i>
+                        <span>1 - 1.4</span>
+                        <b>1</b>
+                        <small>50%</small>
+                    </li>
+                            </ul>
+        </div>
+    </section>
+</div>
+
+<section class="se-panel se-elevar se-c-azul se-rg-panel-ancho">
+    <div class="se-panel-cab">
+        <h2>Promedio por curso</h2>
+    </div>
+
+    <div class="se-ga-cuerpo">
+                    <div class="se-ga-scroll" tabindex="0" role="region" aria-label="Gráfico de promedio por curso">
+                <svg class="se-ga-svg se-rg-barras" width="520" height="260" viewBox="0 0 520 260" role="img" aria-labelledby="se-rg-cur-t se-rg-cur-d">
+                    <title id="se-rg-cur-t">Promedio por curso</title>
+                    <desc id="se-rg-cur-d">A: 3.00. B: 2.50.</desc>
+
+                                            <line class="se-ga-rejilla se-ga-rejilla--base" x1="40" x2="508" y1="220" y2="220" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="224">0</text>
+                                            <line class="se-ga-rejilla " x1="40" x2="508" y1="181.6" y2="181.6" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="185.6">1</text>
+                                            <line class="se-ga-rejilla " x1="40" x2="508" y1="143.2" y2="143.2" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="147.2">2</text>
+                                            <line class="se-ga-rejilla " x1="40" x2="508" y1="104.8" y2="104.8" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="108.8">3</text>
+                                            <line class="se-ga-rejilla " x1="40" x2="508" y1="66.4" y2="66.4" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="70.4">4</text>
+                                            <line class="se-ga-rejilla " x1="40" x2="508" y1="28" y2="28" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="32">5</text>
+
+                                                                    <rect class="se-rg-barra" x="138" y="104.8" width="38" height="115.2" rx="7">
+                            <title>A: 3.00</title>
+                        </rect>
+                        <text class="se-rg-valor" x="157" y="97.8">3.00</text>
+                        <text class="se-ga-eje se-ga-eje--x" x="157" y="246">A</text>
+                                                                    <rect class="se-rg-barra" x="372" y="124" width="38" height="96" rx="7">
+                            <title>B: 2.50</title>
+                        </rect>
+                        <text class="se-rg-valor" x="391" y="117">2.50</text>
+                        <text class="se-ga-eje se-ga-eje--x" x="391" y="246">B</text>
+                                    </svg>
+            </div>
+            </div>
+</section>
+
+<section class="se-panel">
+    <div class="se-panel-cab">
+        <h2>Resumen por curso</h2>
+    </div>
+
+    <div class="se-tabla-wrap" tabindex="0" role="region" aria-label="Resumen por curso">
+        <table class="se-tabla">
+            <thead>
+                <tr>
+                    <th>Curso</th>
+                    <th>Alumnos</th>
+                    <th>% Asistencia</th>
+                    <th>Promedio general</th>
+                    <th>Mejor promedio</th>
+                    <th>Menor promedio</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                                    <tr>
+                        <td>
+                            <span class="se-tabla-titulo">
+                                3°
+                                A
+                            </span>
+                        </td>
+
+                        <td>
+                            2
+                        </td>
+
+                        <td>
+                            <span class="se-badge se-badge--info se-badge--sin-punto">
+                                57.1%
+                            </span>
+                        </td>
+
+                        <td>
+                            3.00
+                        </td>
+
+                        <td>
+                                                            4.67
+                                —
+                                Emilce Espinola
+                                                    </td>
+
+                        <td>
+                                                            1.33
+                                —
+                                Ricardo Ortiz
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <td>
+                            <span class="se-tabla-titulo">
+                                2°
+                                B
+                            </span>
+                        </td>
+
+                        <td>
+                            2
+                        </td>
+
+                        <td>
+                            <span class="se-badge se-badge--info se-badge--sin-punto">
+                                50.0%
+                            </span>
+                        </td>
+
+                        <td>
+                            2.50
+                        </td>
+
+                        <td>
+                                                            4.00
+                                —
+                                Armando Velazco
+                                                    </td>
+
+                        <td>
+                                                            1.00
+                                —
+                                Bautista Gavilán
+                                                    </td>
+                    </tr>
+                            </tbody>
+        </table>
+    </div>
+
+    <div class="se-ad-pie reportes-paginacion">
+        <p class="pagination-info">
+            Mostrando
+            1
+            a
+            2
+            de
+            2
+            cursos
+        </p>
+
+
+    </div>
+</section>
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            var cuerpo = document.body;
+            var toggle = document.querySelector('[data-se-toggle]');
+            var overlay = document.querySelector('[data-se-overlay]');
+            var userBtn = document.querySelector('[data-se-user-toggle]');
+            var userMenu = document.querySelector('[data-se-user-menu]');
+            var movil = window.matchMedia('(max-width: 900px)');
+
+            function menu(abrir) {
+                cuerpo.classList.toggle('se-menu-abierto', abrir);
+                if (toggle) toggle.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+            }
+
+            function usuario(abrir) {
+                if (!userBtn || !userMenu) return;
+                userMenu.classList.toggle('abierto', abrir);
+                userBtn.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+            }
+
+            if (toggle) {
+                toggle.addEventListener('click', function () {
+                    menu(!cuerpo.classList.contains('se-menu-abierto'));
+                });
+            }
+
+            if (overlay) {
+                overlay.addEventListener('click', function () { menu(false); });
+            }
+
+            if (userBtn && userMenu) {
+                userBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    usuario(!userMenu.classList.contains('abierto'));
+                });
+
+                document.addEventListener('click', function (e) {
+                    if (!userMenu.contains(e.target)) usuario(false);
+                });
+            }
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key !== 'Escape') return;
+                var estabaAbierto = cuerpo.classList.contains('se-menu-abierto');
+                menu(false);
+                usuario(false);
+                if (estabaAbierto && toggle) toggle.focus();
+            });
+
+            var alCambiar = function (e) { if (!e.matches) menu(false); };
+            if (movil.addEventListener) movil.addEventListener('change', alCambiar);
+            else if (movil.addListener) movil.addListener(alCambiar);
+
+            window.addEventListener('pageshow', function () { menu(false); usuario(false); });
+
+            // Al cerrar sesión, la próxima entrada vuelve a mostrar la animación escalonada del menú.
+            document.querySelectorAll('[data-se-salir]').forEach(function (f) {
+                f.addEventListener('submit', function () {
+                    try { sessionStorage.removeItem('se-menu-visto'); } catch (e) {}
+                });
+            });
+        })();
+    </script>
+
+    <script src="http://localhost/js/tema.js" defer></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const exportWrap = document.querySelector('.export-wrap');
+        const exportToggle = document.getElementById('exportToggle');
+        const exportMenu = document.getElementById('exportMenu');
+
+        if (!exportToggle || !exportMenu) {
+            return;
+        }
+
+        function alternarMenu(abrir) {
+            exportMenu.hidden = !abrir;
+            exportToggle.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+        }
+
+        exportToggle.addEventListener('click', function (event) {
+            event.stopPropagation();
+            alternarMenu(exportMenu.hidden);
+        });
+
+        document.addEventListener('click', function (event) {
+            if (exportWrap && !exportWrap.contains(event.target)) {
+                alternarMenu(false);
+            }
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && !exportMenu.hidden) {
+                alternarMenu(false);
+                exportToggle.focus();
+            }
+        });
+    });
+</script>
+</body>
+</html>

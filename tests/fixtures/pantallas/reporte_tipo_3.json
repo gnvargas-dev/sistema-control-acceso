@@ -1,0 +1,48 @@
+{
+    "tipo": 3,
+    "titulo": "Cuadro de Honor y Alumnos Destacados",
+    "filtros": {
+        "desde": "2026-09-01 00:00:00",
+        "hasta": "2026-10-12 23:59:59",
+        "curso_id": null,
+        "desde_anterior": "2026-07-20 00:00:00",
+        "hasta_anterior": "2026-08-31 23:59:59"
+    },
+    "generadoEl": "2026-10-12 10:00:00",
+    "cuadroHonor": {
+        "institucional": [
+            {
+                "nombre": "Emilce Espinola",
+                "curso": "A",
+                "promedio": 4.67
+            },
+            {
+                "nombre": "Armando Velazco",
+                "curso": "B",
+                "promedio": 4
+            },
+            {
+                "nombre": "Ricardo Ortiz",
+                "curso": "A",
+                "promedio": 1.33
+            },
+            {
+                "nombre": "Bautista Gavilán",
+                "curso": "B",
+                "promedio": 1
+            }
+        ],
+        "por_curso": {
+            "A": {
+                "nombre": "Emilce Espinola",
+                "curso": "A",
+                "promedio": 4.67
+            },
+            "B": {
+                "nombre": "Armando Velazco",
+                "curso": "B",
+                "promedio": 4
+            }
+        }
+    }
+}

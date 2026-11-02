@@ -1,0 +1,643 @@
+[
+ {
+  "metodo": "GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS",
+  "uri": "/",
+  "nombre": "",
+  "middleware": [
+   "web"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "login",
+  "nombre": "login",
+  "middleware": [
+   "web",
+   "guest"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "login",
+  "nombre": "login.store",
+  "middleware": [
+   "web",
+   "guest"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "logout",
+  "nombre": "logout",
+  "middleware": [
+   "web",
+   "auth"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "alumno/inicio",
+  "nombre": "alumno.inicio",
+  "middleware": [
+   "web",
+   "auth",
+   "role:alumno"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "alumno/notas",
+  "nombre": "alumno.notas",
+  "middleware": [
+   "web",
+   "auth",
+   "role:alumno"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "alumno/asistencia",
+  "nombre": "alumno.asistencia",
+  "middleware": [
+   "web",
+   "auth",
+   "role:alumno"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "alumno/historial",
+  "nombre": "alumno.historial",
+  "middleware": [
+   "web",
+   "auth",
+   "role:alumno"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "profesor/inicio",
+  "nombre": "profesor.inicio",
+  "middleware": [
+   "web",
+   "auth",
+   "role:profesor"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "profesor/cargar-notas",
+  "nombre": "profesor.cargar-notas",
+  "middleware": [
+   "web",
+   "auth",
+   "role:profesor"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "profesor/cargar-notas",
+  "nombre": "profesor.guardar-nota",
+  "middleware": [
+   "web",
+   "auth",
+   "role:profesor"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "profesor/cargar-notas/evaluaciones",
+  "nombre": "profesor.guardar-evaluaciones",
+  "middleware": [
+   "web",
+   "auth",
+   "role:profesor"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "profesor/cargar-notas/resultados",
+  "nombre": "profesor.guardar-resultados",
+  "middleware": [
+   "web",
+   "auth",
+   "role:profesor"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "profesor/cargar-asistencias",
+  "nombre": "profesor.cargar-asistencias",
+  "middleware": [
+   "web",
+   "auth",
+   "role:profesor"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "profesor/cargar-asistencias",
+  "nombre": "profesor.guardar-asistencias",
+  "middleware": [
+   "web",
+   "auth",
+   "role:profesor"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "profesor/historial-asistencias",
+  "nombre": "profesor.historial-asistencias",
+  "middleware": [
+   "web",
+   "auth",
+   "role:profesor"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "profesor/mis-alumnos",
+  "nombre": "profesor.mis-alumnos",
+  "middleware": [
+   "web",
+   "auth",
+   "role:profesor"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "admin/inicio",
+  "nombre": "admin.inicio",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "admin/usuarios",
+  "nombre": "admin.usuarios",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "admin/usuarios",
+  "nombre": "admin.usuarios.guardar",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "DELETE",
+  "uri": "admin/usuarios/{usuario}",
+  "nombre": "admin.usuarios.eliminar",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "admin/boletines",
+  "nombre": "admin.boletines",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "admin/boletines/pdf",
+  "nombre": "admin.boletines.pdf",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "admin/boletines/{boletin}/descargar",
+  "nombre": "admin.boletines.descargar",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "admin/boletines/{boletin}/ver",
+  "nombre": "admin.boletines.ver",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "admin/reportes",
+  "nombre": "admin.reportes",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "admin/reportes/exportar",
+  "nombre": "admin.reportes.exportar",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "admin/materias",
+  "nombre": "admin.materias",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "admin/materias",
+  "nombre": "admin.materias.guardar",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "PUT",
+  "uri": "admin/materias/{materia}",
+  "nombre": "admin.materias.actualizar",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "DELETE",
+  "uri": "admin/materias/{materia}",
+  "nombre": "admin.materias.eliminar",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "admin/legajos",
+  "nombre": "admin.legajos",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "admin/legajos/{alumno}/documentos",
+  "nombre": "admin.legajos.documentos",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "PUT",
+  "uri": "admin/legajos/{alumno}/documentos",
+  "nombre": "admin.legajos.documentos.guardar",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "admin/alumnos",
+  "nombre": "admin.alumnos",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "PUT",
+  "uri": "admin/alumnos/{alumno}",
+  "nombre": "admin.alumnos.actualizar",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "DELETE",
+  "uri": "admin/alumnos/{alumno}",
+  "nombre": "admin.alumnos.eliminar",
+  "middleware": [
+   "web",
+   "auth",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "api/auth/login",
+  "nombre": "",
+  "middleware": [
+   "api"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/auth/me",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "api/auth/logout",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/notas-propias",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:alumno"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/promedio-propio",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:alumno"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/asistencias-propias",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:alumno"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/asistencias-propias/porcentaje",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:alumno"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/historial-propio",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:alumno"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "api/notas",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:profesor"
+  ]
+ },
+ {
+  "metodo": "PUT",
+  "uri": "api/notas/{nota}",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:profesor"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "api/asistencias",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:profesor"
+  ]
+ },
+ {
+  "metodo": "PUT",
+  "uri": "api/asistencias/{asistencia}",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:profesor"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/materias/{materia}/alumnos",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:profesor,administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/usuarios",
+  "nombre": "usuarios.index",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "api/usuarios",
+  "nombre": "usuarios.store",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/usuarios/{usuario}",
+  "nombre": "usuarios.show",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "PUT|PATCH",
+  "uri": "api/usuarios/{usuario}",
+  "nombre": "usuarios.update",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "DELETE",
+  "uri": "api/usuarios/{usuario}",
+  "nombre": "usuarios.destroy",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/materias",
+  "nombre": "materias.index",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "POST",
+  "uri": "api/materias",
+  "nombre": "materias.store",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/materias/{materia}",
+  "nombre": "materias.show",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "PUT|PATCH",
+  "uri": "api/materias/{materia}",
+  "nombre": "materias.update",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "DELETE",
+  "uri": "api/materias/{materia}",
+  "nombre": "materias.destroy",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/boletines/{alumno}/pdf",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/reportes/notas",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/reportes/asistencias",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "GET|HEAD",
+  "uri": "api/legajos/{alumno}",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ },
+ {
+  "metodo": "PUT",
+  "uri": "api/legajos/{alumno}",
+  "nombre": "",
+  "middleware": [
+   "api",
+   "auth:sanctum",
+   "role:administrador"
+  ]
+ }
+]

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="csrf-token" content="TOKEN">
+    <meta name="theme-color" content="#061b52">
+    <title>Sistema Escolar</title>
+
+    <script>
+        try {
+            if (!sessionStorage.getItem('se-menu-visto')) {
+                document.documentElement.classList.add('se-primera');
+                sessionStorage.setItem('se-menu-visto', '1');
+            }
+        } catch (e) {}
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="http://localhost/css/tema.css?v=VERSION">
+
+    </head>
+
+
+<body class="se-rol-alumno">
+    <div class="se-overlay" data-se-overlay aria-hidden="true"></div>
+
+    <aside class="se-sidebar" id="se-sidebar">
+        <div class="se-marca">
+            <svg class="se-marca-icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3 8.5 12 4l9 4.5L12 13 3 8.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="M6 10.2V15c0 1.6 2.7 3.5 6 3.5s6-1.9 6-3.5v-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M21 9v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            <div>
+                <div class="se-marca-titulo">Sistema Escolar</div>
+                            </div>
+        </div>
+
+        <nav class="se-menu" data-se-menu aria-label="Navegación del alumno">
+                                            <a href="http://localhost/alumno/inicio"
+                   class="activo"
+                   style="--i: 0"
+                    aria-current="page" >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M3 11.2 12 4l9 7.2M5.5 9.8V20h13V9.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Inicio</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/alumno/notas"
+                   class=""
+                   style="--i: 1"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M7 3.5h7.5L19 8v12a.5.5 0 0 1-.5.5h-11A.5.5 0 0 1 7 20V4a.5.5 0 0 1 0-.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M14 3.5V8h4.5M9.5 12.5h5M9.5 15.5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Mis notas</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/alumno/asistencia"
+                   class=""
+                   style="--i: 2"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M4 20V10M10 20V4M16 20v-7M4 20h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Mi asistencia</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/alumno/historial"
+                   class=""
+                   style="--i: 3"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M4.5 5.2A2.2 2.2 0 0 1 6.7 3h10.8v16.5H6.7A2.2 2.2 0 0 0 4.5 21.7V5.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M4.5 18.2A2.2 2.2 0 0 1 6.7 16h10.8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Historial académico</span>
+                                            </span>
+                </a>
+                    </nav>
+
+        <div class="se-sidebar-pie">
+                            <div class="se-perfil">
+                    <span class="se-perfil-avatar">EE</span>
+                    <div class="se-perfil-info">
+                        <div class="se-perfil-nombre">Emilce Espinola</div>
+                        <div class="se-perfil-detalle">Alumno · 3° A · Legajo 2026-1001</div>
+                    </div>
+                </div>
+
+            <form class="se-form-salir" method="POST" action="http://localhost/logout" data-se-salir>
+                <input type="hidden" name="_token" value="TOKEN" autocomplete="off">                <button class="se-salir" type="submit">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M10 5H5.5A1.5 1.5 0 0 0 4 6.5v11A1.5 1.5 0 0 0 5.5 19H10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        <path d="m14 8 4 4-4 4M18 12H9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Cerrar sesión
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <div class="se-main">
+        <header class="se-topbar">
+            <button class="se-toggle" type="button" data-se-toggle aria-controls="se-sidebar" aria-label="Abrir o cerrar menú" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+            </button>
+
+            <div class="se-topbar-titulo">
+                            </div>
+
+            <div class="se-topbar-acciones">
+
+                                    <span class="se-campana" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9a6 6 0 0 1 12 0c0 4 1.5 5.5 1.5 5.5h-15S6 13 6 9Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10 18a2 2 0 0 0 4 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                        </svg>
+                        <span class="se-campana-punto"></span>
+                    </span>
+
+                <div class="se-usuario">
+                    <button class="se-usuario-boton" type="button" data-se-user-toggle aria-haspopup="true" aria-expanded="false">
+                        <span class="se-avatar">EE</span>
+
+                        <span class="se-usuario-datos">
+                            <span class="se-usuario-nombre">Emilce Espinola</span>
+                            <span class="se-usuario-rol">Legajo: 2026-1001</span>
+                        </span>
+
+                        <svg class="se-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <div class="se-usuario-menu" data-se-user-menu>
+                        <form method="POST" action="http://localhost/logout" data-se-salir>
+                            <input type="hidden" name="_token" value="TOKEN" autocomplete="off">                            <button type="submit">Cerrar sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="se-contenido">
+
+<div class="se-alumno-inicio">
+    <header class="se-saludo">
+        <div>
+            <h1>¡Hola, Emilce Espinola!</h1>
+            <p>
+                                    3° A ·
+                                Legajo: 2026-1001
+            </p>
+        </div>
+        <span class="se-badge se-badge--claro">Regular</span>
+    </header>
+
+    <section class="se-stats" aria-label="Resumen">
+        <article class="se-stat se-c-azul">
+            <span class="se-stat-icono">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 20V10M10 20V4M16 20v-7M4 20h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
+            <div class="se-stat-cuerpo">
+                <span class="se-stat-titulo">Promedio general</span>
+                <span class="se-stat-valor" data-se-contar>4.67</span>
+                <span class="se-stat-pie">Sobre 5 puntos</span>
+            </div>
+        </article>
+
+        <article class="se-stat se-c-verde">
+            <span class="se-stat-icono">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M8 6h8a2 2 0 0 1 2 2v11l-2-1.3L14 19l-2-1.3L10 19l-2-1.3L6 19V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                    <path d="m9.5 12 1.8 1.8L14.5 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
+            <div class="se-stat-cuerpo">
+                <span class="se-stat-titulo">Asistencia general</span>
+                <span class="se-stat-valor" data-se-contar>71.4%</span>
+                <span class="se-stat-pie">De las clases registradas</span>
+            </div>
+        </article>
+
+        <article class="se-stat se-c-violeta">
+            <span class="se-stat-icono">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4.5 5.2A2.2 2.2 0 0 1 6.7 3h10.8v16.5H6.7A2.2 2.2 0 0 0 4.5 21.7V5.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                    <path d="M4.5 18.2A2.2 2.2 0 0 1 6.7 16h10.8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                </svg>
+            </span>
+            <div class="se-stat-cuerpo">
+                <span class="se-stat-titulo">Materias aprobadas</span>
+                <span class="se-stat-valor">2/2</span>
+                <span class="se-stat-pie">Promedio igual o mayor a 2</span>
+            </div>
+        </article>
+
+        <article class="se-stat se-c-naranja">
+            <span class="se-stat-icono">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 21s-7.5-4.6-9.7-9.6C.7 7.4 3 4 6.6 4c2 0 3.5 1 5.4 3.1C13.9 5 15.4 4 17.4 4 21 4 23.3 7.4 21.7 11.4 19.5 16.4 12 21 12 21Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                </svg>
+            </span>
+            <div class="se-stat-cuerpo">
+                <span class="se-stat-titulo">Estado académico</span>
+                <span class="se-stat-valor se-stat-valor--sm">Regular</span>
+                <span class="se-stat-pie">Estado actual en el sistema</span>
+            </div>
+        </article>
+    </section>
+
+    <div class="se-columnas">
+        <div>
+            <section class="se-panel">
+                <div class="se-panel-cab">
+                    <h2>Alertas</h2>
+                    <span class="se-badge se-badge--pendiente">
+                        1 aviso
+                    </span>
+                </div>
+
+                <div class="se-alertas">
+                                            <div class="se-alerta se-c-naranja" style="--i: 0">
+                            <span class="se-alerta-icono">
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M12 7v5l3 2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                            <div>
+                                <strong>Asistencia baja en materias</strong>
+                                <span>Física</span>
+                            </div>
+                        </div>
+                                    </div>
+            </section>
+
+            <section class="se-panel">
+                <div class="se-panel-cab">
+                    <h2>Mis materias</h2>
+                                            <a href="http://localhost/alumno/notas" class="se-btn se-btn--mini se-btn--suave">Ver mis notas &rarr;</a>
+                                    </div>
+
+                <div class="se-tabla-wrap" tabindex="0" role="region" aria-label="Mis materias">
+                    <table class="se-tabla">
+                        <thead>
+                            <tr>
+                                <th>Materia</th>
+                                <th>Asistencia</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                                            <tr>
+                                    <td>
+                                        <span class="se-tabla-titulo">Física</span>
+                                        <span class="se-tabla-sub">Dario Borba</span>
+                                    </td>
+                                    <td>
+                                                                                    <div class="se-progreso se-c-naranja">
+                                                <span class="se-progreso-barra"><i style="--w: 50%"></i></span>
+                                                <span class="se-progreso-num">50%</span>
+                                            </div>
+                                                                            </td>
+                                    <td>
+                                                                                    <span class="se-badge se-badge--aprobado">Aprobando</span>
+                                                                            </td>
+                                </tr>
+                                                            <tr>
+                                    <td>
+                                        <span class="se-tabla-titulo">Matemática</span>
+                                        <span class="se-tabla-sub">Dario Borba</span>
+                                    </td>
+                                    <td>
+                                                                                    <div class="se-progreso se-c-verde">
+                                                <span class="se-progreso-barra"><i style="--w: 80%"></i></span>
+                                                <span class="se-progreso-num">80%</span>
+                                            </div>
+                                                                            </td>
+                                    <td>
+                                                                                    <span class="se-badge se-badge--aprobado">Aprobando</span>
+                                                                            </td>
+                                </tr>
+                                                    </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="se-panel">
+                <div class="se-panel-cab">
+                    <h2>Historial académico reciente</h2>
+                    <span class="se-badge se-badge--info se-badge--sin-punto">Actividad reciente</span>
+                </div>
+
+                                    <ul class="se-hitos">                        <li class="se-hito">
+                            <div class="se-hito-cab">
+                                <span class="se-badge se-badge--info se-badge--sin-punto">2do Bimestre</span>
+                                <span class="se-tiempo">02/10/2026</span>
+                            </div>
+                            <p>Aprobó Matemática</p>
+                        </li>
+                                                                                <li class="se-hito">
+                            <div class="se-hito-cab">
+                                <span class="se-badge se-badge--info se-badge--sin-punto">1er Bimestre</span>
+                                <span class="se-tiempo">30/09/2026</span>
+                            </div>
+                            <p>Promedio del 1er Bimestre: 4.50</p>
+                        </li>
+                    </ul>                            </section>
+        </div>
+
+        <div>
+            <section class="se-panel">
+                <div class="se-panel-cab">
+                    <h2>Asistencia actual</h2>
+                </div>
+
+                <div class="se-anillo-caja se-c-verde">
+                    <div class="se-anillo" role="img" aria-label="Asistencia general 71.4%">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <circle class="se-anillo-fondo" cx="50" cy="50" r="42" />
+                            <circle class="se-anillo-valor" cx="50" cy="50" r="42" style="--p: 0.714" />
+                        </svg>
+                        <span class="se-anillo-texto" aria-hidden="true">71.4%</span>
+                    </div>
+                    <div class="se-anillo-info">
+                        <strong>Vas muy bien</strong>
+                        Mínimo esperado: 70%.
+                    </div>
+                </div>
+            </section>
+
+            <section class="se-panel">
+                <div class="se-panel-cab">
+                    <h2>Resumen académico</h2>
+                </div>
+
+                <ul class="se-lista">
+                    <li class="se-lista-item"><span>Promedio general</span><strong>4.67</strong></li>
+                    <li class="se-lista-item"><span>Materias aprobadas</span><strong>2 / 2</strong></li>
+                    <li class="se-lista-item"><span>Materias en curso</span><strong>2</strong></li>
+                    <li class="se-lista-item"><span>Asistencia general</span><strong>71.4%</strong></li>
+                </ul>
+            </section>
+
+            <section class="se-panel">
+                <div class="se-panel-cab">
+                    <h2>Períodos con actividad</h2>
+                </div>
+
+                <div class="se-panel-cuerpo">
+                                            <span class="se-badge se-badge--info se-badge--sin-punto">2do Bimestre</span>
+                                            <span class="se-badge se-badge--info se-badge--sin-punto">1er Bimestre</span>
+                                    </div>
+            </section>
+        </div>
+    </div>
+</div>
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            var cuerpo = document.body;
+            var toggle = document.querySelector('[data-se-toggle]');
+            var overlay = document.querySelector('[data-se-overlay]');
+            var userBtn = document.querySelector('[data-se-user-toggle]');
+            var userMenu = document.querySelector('[data-se-user-menu]');
+            var movil = window.matchMedia('(max-width: 900px)');
+
+            function menu(abrir) {
+                cuerpo.classList.toggle('se-menu-abierto', abrir);
+                if (toggle) toggle.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+            }
+
+            function usuario(abrir) {
+                if (!userBtn || !userMenu) return;
+                userMenu.classList.toggle('abierto', abrir);
+                userBtn.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+            }
+
+            if (toggle) {
+                toggle.addEventListener('click', function () {
+                    menu(!cuerpo.classList.contains('se-menu-abierto'));
+                });
+            }
+
+            if (overlay) {
+                overlay.addEventListener('click', function () { menu(false); });
+            }
+
+            if (userBtn && userMenu) {
+                userBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    usuario(!userMenu.classList.contains('abierto'));
+                });
+
+                document.addEventListener('click', function (e) {
+                    if (!userMenu.contains(e.target)) usuario(false);
+                });
+            }
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key !== 'Escape') return;
+                var estabaAbierto = cuerpo.classList.contains('se-menu-abierto');
+                menu(false);
+                usuario(false);
+                if (estabaAbierto && toggle) toggle.focus();
+            });
+
+            var alCambiar = function (e) { if (!e.matches) menu(false); };
+            if (movil.addEventListener) movil.addEventListener('change', alCambiar);
+            else if (movil.addListener) movil.addListener(alCambiar);
+
+            window.addEventListener('pageshow', function () { menu(false); usuario(false); });
+
+            // Al cerrar sesión, la próxima entrada vuelve a mostrar la animación escalonada del menú.
+            document.querySelectorAll('[data-se-salir]').forEach(function (f) {
+                f.addEventListener('submit', function () {
+                    try { sessionStorage.removeItem('se-menu-visto'); } catch (e) {}
+                });
+            });
+        })();
+    </script>
+
+    <script src="http://localhost/js/tema.js" defer></script>
+
+    </body>
+</html>

@@ -1,0 +1,95 @@
+{
+    "alumno": {
+        "id": 1,
+        "nombre": "Emilce Espinola",
+        "curso": "3° A"
+    },
+    "categorias": [
+        {
+            "clave": "personal",
+            "nombre": "Documentación Personal e Identificatoria",
+            "items": [
+                {
+                    "slug": "cedula_dni",
+                    "nombre": "Cédula de Identidad o DNI escaneado de ambos lados",
+                    "marcado": true
+                },
+                {
+                    "slug": "partida_nacimiento",
+                    "nombre": "Partida o certificado de nacimiento",
+                    "marcado": true
+                },
+                {
+                    "slug": "foto_carnet",
+                    "nombre": "Fotografía actualizada tipo carnet",
+                    "marcado": false
+                }
+            ]
+        },
+        {
+            "clave": "academica",
+            "nombre": "Documentación Académica y de Admisión",
+            "items": [
+                {
+                    "slug": "ficha_inscripcion",
+                    "nombre": "Ficha de inscripción o matrícula firmada",
+                    "marcado": false
+                },
+                {
+                    "slug": "certificado_estudios",
+                    "nombre": "Certificado de estudios o boletín de calificaciones anterior / analítico",
+                    "marcado": false
+                },
+                {
+                    "slug": "constancia_pase",
+                    "nombre": "Constancia de pase o traslado de otra institución (si aplica)",
+                    "marcado": false
+                }
+            ]
+        },
+        {
+            "clave": "salud",
+            "nombre": "Salud y Bienestar",
+            "items": [
+                {
+                    "slug": "certificado_medico",
+                    "nombre": "Certificado médico y tipo de sangre",
+                    "marcado": true
+                },
+                {
+                    "slug": "libreta_vacunacion",
+                    "nombre": "Libreta de vacunación al día",
+                    "marcado": false
+                },
+                {
+                    "slug": "ficha_medica",
+                    "nombre": "Ficha médica con autorizaciones de emergencia o alergias",
+                    "marcado": false
+                }
+            ]
+        },
+        {
+            "clave": "convivencia",
+            "nombre": "Seguimiento y Convivencia",
+            "items": [
+                {
+                    "slug": "observaciones_pedagogicas",
+                    "nombre": "Observaciones pedagógicas o informes de apoyo psicopedagógico",
+                    "marcado": false
+                },
+                {
+                    "slug": "registro_autorizaciones",
+                    "nombre": "Registro de autorizaciones (quiénes pueden retirar al alumno, permisos de salida)",
+                    "marcado": false
+                },
+                {
+                    "slug": "notificaciones_disciplinarias",
+                    "nombre": "Notificaciones disciplinarias o actas de acuerdo si el colegio lo requiere",
+                    "marcado": false
+                }
+            ]
+        }
+    ],
+    "total": 12,
+    "entregados": 3
+}

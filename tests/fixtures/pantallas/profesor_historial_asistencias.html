@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="csrf-token" content="TOKEN">
+    <meta name="theme-color" content="#061b52">
+    <title>Historial de asistencias</title>
+
+    <script>
+        try {
+            if (!sessionStorage.getItem('se-menu-visto')) {
+                document.documentElement.classList.add('se-primera');
+                sessionStorage.setItem('se-menu-visto', '1');
+            }
+        } catch (e) {}
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="http://localhost/css/tema.css?v=VERSION">
+
+    </head>
+
+
+<body class="se-rol-profesor">
+    <div class="se-overlay" data-se-overlay aria-hidden="true"></div>
+
+    <aside class="se-sidebar" id="se-sidebar">
+        <div class="se-marca">
+            <svg class="se-marca-icono" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3 8.5 12 4l9 4.5L12 13 3 8.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="M6 10.2V15c0 1.6 2.7 3.5 6 3.5s6-1.9 6-3.5v-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M21 9v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            <div>
+                <div class="se-marca-titulo">Sistema Escolar</div>
+                                    <div class="se-marca-subtitulo">Panel del Profesor</div>
+                            </div>
+        </div>
+
+        <nav class="se-menu" data-se-menu aria-label="Navegación del profesor">
+                                            <a href="http://localhost/profesor/inicio"
+                   class=""
+                   style="--i: 0"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M3 11.2 12 4l9 7.2M5.5 9.8V20h13V9.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Inicio</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/profesor/cargar-notas"
+                   class=""
+                   style="--i: 1"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M7 3.5h7.5L19 8v12a.5.5 0 0 1-.5.5h-11A.5.5 0 0 1 7 20V4a.5.5 0 0 1 0-.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M14 3.5V8h4.5M9.5 12.5h5M9.5 15.5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Cargar notas</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/profesor/cargar-asistencias"
+                   class=""
+                   style="--i: 2"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M4 20V10M10 20V4M16 20v-7M4 20h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Cargar asistencias</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/profesor/historial-asistencias"
+                   class="activo"
+                   style="--i: 3"
+                    aria-current="page" >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M3.5 12a8.5 8.5 0 1 1 2.7 6.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M3.5 6.5V12h5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M12 8v4.5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Historial de asistencias</span>
+                                            </span>
+                </a>
+                                            <a href="http://localhost/profesor/mis-alumnos"
+                   class=""
+                   style="--i: 4"
+                   >
+                    <span class="se-menu-icono">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M2.5 9 12 4.5 21.5 9 12 13.5 2.5 9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M6.5 11v4.2c0 1.1 2.5 2.3 5.5 2.3s5.5-1.2 5.5-2.3V11M21.5 9v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="se-menu-titulo">Mis alumnos</span>
+                                            </span>
+                </a>
+                    </nav>
+
+        <div class="se-sidebar-pie">
+                            <div class="se-perfil">
+                    <span class="se-perfil-avatar">DB</span>
+                    <div class="se-perfil-info">
+                        <div class="se-perfil-nombre">Dario Borba</div>
+                        <div class="se-perfil-detalle">Profesor · 2 materias asignadas</div>
+                    </div>
+                </div>
+
+            <form class="se-form-salir" method="POST" action="http://localhost/logout" data-se-salir>
+                <input type="hidden" name="_token" value="TOKEN" autocomplete="off">                <button class="se-salir" type="submit">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M10 5H5.5A1.5 1.5 0 0 0 4 6.5v11A1.5 1.5 0 0 0 5.5 19H10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        <path d="m14 8 4 4-4 4M18 12H9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Cerrar sesión
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <div class="se-main">
+        <header class="se-topbar">
+            <button class="se-toggle" type="button" data-se-toggle aria-controls="se-sidebar" aria-label="Abrir o cerrar menú" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+            </button>
+
+            <div class="se-topbar-titulo">
+                                    <h1>¡Bienvenido, Prof. Dario!</h1>
+                    <p>Este es tu panel de control como profesor.</p>
+                            </div>
+
+            <div class="se-topbar-acciones">
+                                    <div class="se-fecha">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.7" />
+                            <path d="M3.5 9.5h17M8 3v3.5M16 3v3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                        </svg>
+                        <span>
+                            <div class="se-fecha-dia">Lunes, 12 de octubre de 2026</div>
+                            <div class="se-fecha-periodo">Período: 3° Trimestre 2026</div>
+                        </span>
+                    </div>
+
+                                    <span class="se-campana" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9a6 6 0 0 1 12 0c0 4 1.5 5.5 1.5 5.5h-15S6 13 6 9Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10 18a2 2 0 0 0 4 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                        </svg>
+                        <span class="se-campana-punto"></span>
+                    </span>
+
+                <div class="se-usuario">
+                    <button class="se-usuario-boton" type="button" data-se-user-toggle aria-haspopup="true" aria-expanded="false">
+                        <span class="se-avatar">DB</span>
+
+                        <span class="se-usuario-datos">
+                            <span class="se-usuario-nombre">Prof. Dario Borba</span>
+                            <span class="se-usuario-rol">Profesor</span>
+                        </span>
+
+                        <svg class="se-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <div class="se-usuario-menu" data-se-user-menu>
+                        <form method="POST" action="http://localhost/logout" data-se-salir>
+                            <input type="hidden" name="_token" value="TOKEN" autocomplete="off">                            <button type="submit">Cerrar sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="se-contenido">
+            <header class="se-saludo">
+    <div>
+        <h1>Historial de asistencias</h1>
+        <p>Mirá cómo viene la asistencia de tus materias y abrí cualquier día para verlo o editarlo.</p>
+    </div>
+    <span class="se-badge se-badge--claro se-badge--sin-punto">7 clases registradas</span>
+</header>
+
+<section class="se-panel se-elevar se-c-azul">
+    <form method="GET" action="http://localhost/profesor/historial-asistencias" class="se-filtros">
+        <div class="se-filtro">
+            <label for="hist-materia">Materia</label>
+            <select id="hist-materia" name="materia_id" onchange="this.form.submit()">
+                <option value="">Todas mis materias</option>
+                                    <option value="2" >
+                        Física
+                                                    (3° A)
+                                            </option>
+                                    <option value="1" >
+                        Matemática
+                                                    (3° A)
+                                            </option>
+                            </select>
+        </div>
+    </form>
+</section>
+
+<div class="se-ga-fila">
+
+        <section class="se-panel se-elevar se-c-verde">
+            <div class="se-panel-cab">
+                <h2>Presentes, tardanzas y ausentes</h2>
+                <span class="se-badge se-badge--info se-badge--sin-punto">14 registros</span>
+            </div>
+
+            <div class="se-ga-anillo-caja">
+                <svg class="se-ga-svg se-ga-anillo" viewBox="0 0 120 120" role="img" aria-labelledby="se-ga-anillo-t se-ga-anillo-d">
+                    <title id="se-ga-anillo-t">Distribución de la asistencia</title>
+                    <desc id="se-ga-anillo-d">Presentes: 8 (57.1%). Tardanzas: 2 (14.3%). Ausentes: 3 (21.4%). Justificadas: 1 (7.1%).</desc>
+                    <circle class="se-ga-anillo-fondo" cx="60" cy="60" r="46" />
+                    <g transform="rotate(-90 60 60)">
+                                                                                    <circle class="se-ga-seg se-c-verde" style="--i: 0" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="55.94 100" stroke-dashoffset="-0.6">
+                                    <title>Presentes: 8 (57.1%)</title>
+                                </circle>
+                                                                                                                <circle class="se-ga-seg se-c-naranja" style="--i: 1" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="13.09 100" stroke-dashoffset="-57.74">
+                                    <title>Tardanzas: 2 (14.3%)</title>
+                                </circle>
+                                                                                                                <circle class="se-ga-seg se-c-rojo" style="--i: 2" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="20.23 100" stroke-dashoffset="-72.03">
+                                    <title>Ausentes: 3 (21.4%)</title>
+                                </circle>
+                                                                                                                <circle class="se-ga-seg se-c-violeta" style="--i: 3" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="5.94 100" stroke-dashoffset="-93.46">
+                                    <title>Justificadas: 1 (7.1%)</title>
+                                </circle>
+                                                                        </g>
+                    <text class="se-ga-centro" x="60" y="62">57.14%</text>
+                    <text class="se-ga-centro-sub" x="60" y="75">de asistencia</text>
+                </svg>
+
+                <ul class="se-ga-leyenda">
+                                            <li class="se-c-verde">
+                            <i class="se-ga-dot"></i>
+                            <span>Presentes</span>
+                            <b>8</b>
+                            <small>57.1%</small>
+                        </li>
+                                            <li class="se-c-naranja">
+                            <i class="se-ga-dot"></i>
+                            <span>Tardanzas</span>
+                            <b>2</b>
+                            <small>14.3%</small>
+                        </li>
+                                            <li class="se-c-rojo">
+                            <i class="se-ga-dot"></i>
+                            <span>Ausentes</span>
+                            <b>3</b>
+                            <small>21.4%</small>
+                        </li>
+                                            <li class="se-c-violeta">
+                            <i class="se-ga-dot"></i>
+                            <span>Justificadas</span>
+                            <b>1</b>
+                            <small>7.1%</small>
+                        </li>
+                                    </ul>
+            </div>
+
+            <p class="se-ga-pie">Cuenta como asistidas solo las presencias; las tardanzas no suman.</p>
+        </section>
+
+
+        <section class="se-panel se-elevar se-c-azul">
+            <div class="se-panel-cab">
+                <h2>Asistencia de lunes a viernes</h2>
+            </div>
+
+            <div class="se-ga-cuerpo">
+                <svg class="se-ga-svg" viewBox="0 0 360 232" role="img" aria-labelledby="se-ga-barras-t se-ga-barras-d">
+                    <title id="se-ga-barras-t">Asistencia según el día de la semana</title>
+                    <desc id="se-ga-barras-d">Lunes: 100%. Martes: 50%. Miércoles: 0%. Jueves: 50%. Viernes: 50%.</desc>
+
+                                            <line class="se-ga-rejilla se-ga-rejilla--base" x1="40" x2="350" y1="196" y2="196" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="200">0%</text>
+                                            <line class="se-ga-rejilla " x1="40" x2="350" y1="153.5" y2="153.5" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="157.5">25%</text>
+                                            <line class="se-ga-rejilla " x1="40" x2="350" y1="111" y2="111" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="115">50%</text>
+                                            <line class="se-ga-rejilla " x1="40" x2="350" y1="68.5" y2="68.5" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="72.5">75%</text>
+                                            <line class="se-ga-rejilla " x1="40" x2="350" y1="26" y2="26" />
+                        <text class="se-ga-eje se-ga-eje--y" x="32" y="30">100%</text>
+
+                    <line class="se-ga-min" x1="40" x2="350" y1="77" y2="77">
+                        <title>Mínimo requerido: 70%</title>
+                    </line>
+
+                                                                                                                            <rect class="se-ga-barra se-c-azul" style="--i: 0" x="52" y="26" width="38" height="170" rx="7">
+                                <title>Lunes: 100% (4 registros)</title>
+                            </rect>
+                            <text class="se-ga-barra-valor" style="--i: 0" x="71" y="19">100%</text>
+                                                <text class="se-ga-eje se-ga-eje--x" x="71" y="220">Lun</text>
+                                                                                                                            <rect class="se-ga-barra se-c-naranja" style="--i: 1" x="114" y="111" width="38" height="85" rx="7">
+                                <title>Martes: 50% (4 registros)</title>
+                            </rect>
+                            <text class="se-ga-barra-valor" style="--i: 1" x="133" y="104">50%</text>
+                                                <text class="se-ga-eje se-ga-eje--x" x="133" y="220">Mar</text>
+                                                                                                                            <rect class="se-ga-barra se-c-naranja" style="--i: 2" x="176" y="194" width="38" height="2" rx="7">
+                                <title>Miércoles: 0% (2 registros)</title>
+                            </rect>
+                            <text class="se-ga-barra-valor" style="--i: 2" x="195" y="187">0%</text>
+                                                <text class="se-ga-eje se-ga-eje--x" x="195" y="220">Mié</text>
+                                                                                                                            <rect class="se-ga-barra se-c-naranja" style="--i: 3" x="238" y="111" width="38" height="85" rx="7">
+                                <title>Jueves: 50% (2 registros)</title>
+                            </rect>
+                            <text class="se-ga-barra-valor" style="--i: 3" x="257" y="104">50%</text>
+                                                <text class="se-ga-eje se-ga-eje--x" x="257" y="220">Jue</text>
+                                                                                                                            <rect class="se-ga-barra se-c-naranja" style="--i: 4" x="300" y="111" width="38" height="85" rx="7">
+                                <title>Viernes: 50% (2 registros)</title>
+                            </rect>
+                            <text class="se-ga-barra-valor" style="--i: 4" x="319" y="104">50%</text>
+                                                <text class="se-ga-eje se-ga-eje--x" x="319" y="220">Vie</text>
+                                    </svg>
+            </div>
+
+            <p class="se-ga-pie">
+                <span class="se-ga-clave-min" aria-hidden="true"></span>Mínimo requerido: <strong>70%</strong>.
+                Las barras naranjas quedan por debajo.
+            </p>
+        </section>
+    </div>
+
+
+    <section class="se-panel se-elevar se-c-azul">
+        <div class="se-panel-cab">
+            <h2>Evolución de las últimas 8 semanas</h2>
+        </div>
+
+        <div class="se-ga-cuerpo">
+            <div class="se-ga-scroll" tabindex="0" role="region" aria-label="Gráfico de evolución semanal">
+                <svg class="se-ga-svg se-ga-svg--linea" viewBox="0 0 720 240" role="img" aria-labelledby="se-ga-linea-t se-ga-linea-d">
+                    <title id="se-ga-linea-t">Evolución semanal de la asistencia</title>
+                    <desc id="se-ga-linea-d">Semana del 24/08: sin registros. Semana del 31/08: sin registros. Semana del 07/09: sin registros. Semana del 14/09: 50%. Semana del 21/09: sin registros. Semana del 28/09: sin registros. Semana del 05/10: 50%. Semana del 12/10: 100%.</desc>
+                    <defs>
+                        <linearGradient id="se-ga-degradado" x1="0" y1="0" x2="0" y2="1">
+                            <stop class="se-ga-degradado-ini" offset="0" />
+                            <stop class="se-ga-degradado-fin" offset="1" />
+                        </linearGradient>
+                    </defs>
+
+                                            <line class="se-ga-rejilla se-ga-rejilla--base" x1="46" x2="702" y1="196" y2="196" />
+                        <text class="se-ga-eje se-ga-eje--y" x="36" y="200">0%</text>
+                                            <line class="se-ga-rejilla " x1="46" x2="702" y1="154" y2="154" />
+                        <text class="se-ga-eje se-ga-eje--y" x="36" y="158">25%</text>
+                                            <line class="se-ga-rejilla " x1="46" x2="702" y1="112" y2="112" />
+                        <text class="se-ga-eje se-ga-eje--y" x="36" y="116">50%</text>
+                                            <line class="se-ga-rejilla " x1="46" x2="702" y1="70" y2="70" />
+                        <text class="se-ga-eje se-ga-eje--y" x="36" y="74">75%</text>
+                                            <line class="se-ga-rejilla " x1="46" x2="702" y1="28" y2="28" />
+                        <text class="se-ga-eje se-ga-eje--y" x="36" y="32">100%</text>
+
+                    <line class="se-ga-min" x1="46" x2="702" y1="78.4" y2="78.4">
+                        <title>Mínimo requerido: 70%</title>
+                    </line>
+
+                                            <path class="se-ga-area" d="M579 196 L579 112 L661 28 L661 196 Z" fill="url(#se-ga-degradado)" />
+
+                                            <path class="se-ga-curva" d="M579 112 L661 28" pathLength="1" />
+
+                                            <text class="se-ga-eje se-ga-eje--x" x="87" y="226">24/08</text>
+
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="169" y="226">31/08</text>
+
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="251" y="226">07/09</text>
+
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="333" y="226">14/09</text>
+
+                                                    <circle class="se-ga-nodo se-c-naranja" style="--i: 3" cx="333" cy="112" r="5.5">
+                                <title>Semana del 14/09: 50% (2 registros)</title>
+                            </circle>
+                            <text class="se-ga-valor" style="--i: 3" x="333" y="99">50%</text>
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="415" y="226">21/09</text>
+
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="497" y="226">28/09</text>
+
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="579" y="226">05/10</text>
+
+                                                    <circle class="se-ga-nodo se-c-naranja" style="--i: 6" cx="579" cy="112" r="5.5">
+                                <title>Semana del 05/10: 50% (10 registros)</title>
+                            </circle>
+                            <text class="se-ga-valor" style="--i: 6" x="579" y="99">50%</text>
+                                                                    <text class="se-ga-eje se-ga-eje--x" x="661" y="226">12/10</text>
+
+                                                    <circle class="se-ga-nodo se-c-azul" style="--i: 7" cx="661" cy="28" r="5.5">
+                                <title>Semana del 12/10: 100% (2 registros)</title>
+                            </circle>
+                            <text class="se-ga-valor" style="--i: 7" x="661" y="15">100%</text>
+                                                            </svg>
+            </div>
+        </div>
+
+        <p class="se-ga-pie">
+            Cada punto es la asistencia de la semana que empieza el lunes indicado; las semanas sin registros quedan sin punto.
+            <span class="se-ga-clave-min" aria-hidden="true"></span>Mínimo requerido: <strong>70%</strong>.
+            Cuenta como asistidas solo las presencias; las tardanzas no suman.
+        </p>
+    </section>
+
+<section class="se-panel se-elevar se-c-azul">
+    <div class="se-panel-cab">
+        <h2>Clases registradas</h2>
+    </div>
+
+    <div class="se-tabla-wrap" tabindex="0" role="region" aria-label="Historial de asistencias">
+        <table class="se-tabla">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Materia</th>
+                    <th>Curso</th>
+                    <th>Resultados</th>
+                    <th><span class="se-ga-oculto">Acciones</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                                    <tr>
+                        <td><span class="se-tabla-titulo">12/10/2026</span></td>
+                        <td>Matemática</td>
+                        <td>
+                                                            <span class="se-badge se-badge--info se-badge--sin-punto">
+                                    3° A
+                                </span>
+                                                    </td>
+                        <td>
+                            <div class="se-ga-conteos">
+                                <span class="se-ga-conteo se-c-verde" title="Presentes"><i class="se-ga-dot"></i>2<span class="se-ga-oculto"> presentes</span></span>
+                                <span class="se-ga-conteo se-c-rojo" title="Ausentes"><i class="se-ga-dot"></i>0<span class="se-ga-oculto"> ausentes</span></span>
+                                <span class="se-ga-conteo se-c-naranja" title="Tardanzas"><i class="se-ga-dot"></i>0<span class="se-ga-oculto"> tardanzas</span></span>
+                            </div>
+                                                            <div class="se-ga-apilada" aria-hidden="true">
+                                    <i class="se-c-verde" style="--w: 100%"></i>
+                                    <i class="se-c-naranja" style="--w: 0%"></i>
+                                    <i class="se-c-rojo" style="--w: 0%"></i>
+                                </div>
+                                                    </td>
+                        <td>
+                            <a
+                                href="http://localhost/profesor/cargar-asistencias?materia_id=1&amp;fecha=2026-10-12"
+                                class="se-btn se-btn--mini se-btn--suave"
+                            >
+                                Ver / editar
+                            </a>
+                        </td>
+                    </tr>
+                                    <tr>
+                        <td><span class="se-tabla-titulo">09/10/2026</span></td>
+                        <td>Matemática</td>
+                        <td>
+                                                            <span class="se-badge se-badge--info se-badge--sin-punto">
+                                    3° A
+                                </span>
+                                                    </td>
+                        <td>
+                            <div class="se-ga-conteos">
+                                <span class="se-ga-conteo se-c-verde" title="Presentes"><i class="se-ga-dot"></i>1<span class="se-ga-oculto"> presentes</span></span>
+                                <span class="se-ga-conteo se-c-rojo" title="Ausentes"><i class="se-ga-dot"></i>0<span class="se-ga-oculto"> ausentes</span></span>
+                                <span class="se-ga-conteo se-c-naranja" title="Tardanzas"><i class="se-ga-dot"></i>0<span class="se-ga-oculto"> tardanzas</span></span>
+                            </div>
+                                                            <div class="se-ga-apilada" aria-hidden="true">
+                                    <i class="se-c-verde" style="--w: 50%"></i>
+                                    <i class="se-c-naranja" style="--w: 0%"></i>
+                                    <i class="se-c-rojo" style="--w: 0%"></i>
+                                </div>
+                                                    </td>
+                        <td>
+                            <a
+                                href="http://localhost/profesor/cargar-asistencias?materia_id=1&amp;fecha=2026-10-09"
+                                class="se-btn se-btn--mini se-btn--suave"
+                            >
+                                Ver / editar
+                            </a>
+                        </td>
+                    </tr>
+                                    <tr>
+                        <td><span class="se-tabla-titulo">08/10/2026</span></td>
+                        <td>Física</td>
+                        <td>
+                                                            <span class="se-badge se-badge--info se-badge--sin-punto">
+                                    3° A
+                                </span>
+                                                    </td>
+                        <td>
+                            <div class="se-ga-conteos">
+                                <span class="se-ga-conteo se-c-verde" title="Presentes"><i class="se-ga-dot"></i>1<span class="se-ga-oculto"> presentes</span></span>
+                                <span class="se-ga-conteo se-c-rojo" title="Ausentes"><i class="se-ga-dot"></i>1<span class="se-ga-oculto"> ausentes</span></span>
+                                <span class="se-ga-conteo se-c-naranja" title="Tardanzas"><i class="se-ga-dot"></i>0<span class="se-ga-oculto"> tardanzas</span></span>
+                            </div>
+                                                            <div class="se-ga-apilada" aria-hidden="true">
+                                    <i class="se-c-verde" style="--w: 50%"></i>
+                                    <i class="se-c-naranja" style="--w: 0%"></i>
+                                    <i class="se-c-rojo" style="--w: 50%"></i>
+                                </div>
+                                                    </td>
+                        <td>
+                            <a
+                                href="http://localhost/profesor/cargar-asistencias?materia_id=2&amp;fecha=2026-10-08"
+                                class="se-btn se-btn--mini se-btn--suave"
+                            >
+                                Ver / editar
+                            </a>
+                        </td>
+                    </tr>
+                                    <tr>
+                        <td><span class="se-tabla-titulo">07/10/2026</span></td>
+                        <td>Matemática</td>
+                        <td>
+                                                            <span class="se-badge se-badge--info se-badge--sin-punto">
+                                    3° A
+                                </span>
+                                                    </td>
+                        <td>
+                            <div class="se-ga-conteos">
+                                <span class="se-ga-conteo se-c-verde" title="Presentes"><i class="se-ga-dot"></i>0<span class="se-ga-oculto"> presentes</span></span>
+                                <span class="se-ga-conteo se-c-rojo" title="Ausentes"><i class="se-ga-dot"></i>1<span class="se-ga-oculto"> ausentes</span></span>
+                                <span class="se-ga-conteo se-c-naranja" title="Tardanzas"><i class="se-ga-dot"></i>1<span class="se-ga-oculto"> tardanzas</span></span>
+                            </div>
+                                                            <div class="se-ga-apilada" aria-hidden="true">
+                                    <i class="se-c-verde" style="--w: 0%"></i>
+                                    <i class="se-c-naranja" style="--w: 50%"></i>
+                                    <i class="se-c-rojo" style="--w: 50%"></i>
+                                </div>
+                                                    </td>
+                        <td>
+                            <a
+                                href="http://localhost/profesor/cargar-asistencias?materia_id=1&amp;fecha=2026-10-07"
+                                class="se-btn se-btn--mini se-btn--suave"
+                            >
+                                Ver / editar
+                            </a>
+                        </td>
+                    </tr>
+                                    <tr>
+                        <td><span class="se-tabla-titulo">06/10/2026</span></td>
+                        <td>Física</td>
+                        <td>
+                                                            <span class="se-badge se-badge--info se-badge--sin-punto">
+                                    3° A
+                                </span>
+                                                    </td>
+                        <td>
+                            <div class="se-ga-conteos">
+                                <span class="se-ga-conteo se-c-verde" title="Presentes"><i class="se-ga-dot"></i>1<span class="se-ga-oculto"> presentes</span></span>
+                                <span class="se-ga-conteo se-c-rojo" title="Ausentes"><i class="se-ga-dot"></i>1<span class="se-ga-oculto"> ausentes</span></span>
+                                <span class="se-ga-conteo se-c-naranja" title="Tardanzas"><i class="se-ga-dot"></i>0<span class="se-ga-oculto"> tardanzas</span></span>
+                            </div>
+                                                            <div class="se-ga-apilada" aria-hidden="true">
+                                    <i class="se-c-verde" style="--w: 50%"></i>
+                                    <i class="se-c-naranja" style="--w: 0%"></i>
+                                    <i class="se-c-rojo" style="--w: 50%"></i>
+                                </div>
+                                                    </td>
+                        <td>
+                            <a
+                                href="http://localhost/profesor/cargar-asistencias?materia_id=2&amp;fecha=2026-10-06"
+                                class="se-btn se-btn--mini se-btn--suave"
+                            >
+                                Ver / editar
+                            </a>
+                        </td>
+                    </tr>
+                                    <tr>
+                        <td><span class="se-tabla-titulo">05/10/2026</span></td>
+                        <td>Matemática</td>
+                        <td>
+                                                            <span class="se-badge se-badge--info se-badge--sin-punto">
+                                    3° A
+                                </span>
+                                                    </td>
+                        <td>
+                            <div class="se-ga-conteos">
+                                <span class="se-ga-conteo se-c-verde" title="Presentes"><i class="se-ga-dot"></i>2<span class="se-ga-oculto"> presentes</span></span>
+                                <span class="se-ga-conteo se-c-rojo" title="Ausentes"><i class="se-ga-dot"></i>0<span class="se-ga-oculto"> ausentes</span></span>
+                                <span class="se-ga-conteo se-c-naranja" title="Tardanzas"><i class="se-ga-dot"></i>0<span class="se-ga-oculto"> tardanzas</span></span>
+                            </div>
+                                                            <div class="se-ga-apilada" aria-hidden="true">
+                                    <i class="se-c-verde" style="--w: 100%"></i>
+                                    <i class="se-c-naranja" style="--w: 0%"></i>
+                                    <i class="se-c-rojo" style="--w: 0%"></i>
+                                </div>
+                                                    </td>
+                        <td>
+                            <a
+                                href="http://localhost/profesor/cargar-asistencias?materia_id=1&amp;fecha=2026-10-05"
+                                class="se-btn se-btn--mini se-btn--suave"
+                            >
+                                Ver / editar
+                            </a>
+                        </td>
+                    </tr>
+                                    <tr>
+                        <td><span class="se-tabla-titulo">15/09/2026</span></td>
+                        <td>Matemática</td>
+                        <td>
+                                                            <span class="se-badge se-badge--info se-badge--sin-punto">
+                                    3° A
+                                </span>
+                                                    </td>
+                        <td>
+                            <div class="se-ga-conteos">
+                                <span class="se-ga-conteo se-c-verde" title="Presentes"><i class="se-ga-dot"></i>1<span class="se-ga-oculto"> presentes</span></span>
+                                <span class="se-ga-conteo se-c-rojo" title="Ausentes"><i class="se-ga-dot"></i>0<span class="se-ga-oculto"> ausentes</span></span>
+                                <span class="se-ga-conteo se-c-naranja" title="Tardanzas"><i class="se-ga-dot"></i>1<span class="se-ga-oculto"> tardanzas</span></span>
+                            </div>
+                                                            <div class="se-ga-apilada" aria-hidden="true">
+                                    <i class="se-c-verde" style="--w: 50%"></i>
+                                    <i class="se-c-naranja" style="--w: 50%"></i>
+                                    <i class="se-c-rojo" style="--w: 0%"></i>
+                                </div>
+                                                    </td>
+                        <td>
+                            <a
+                                href="http://localhost/profesor/cargar-asistencias?materia_id=1&amp;fecha=2026-09-15"
+                                class="se-btn se-btn--mini se-btn--suave"
+                            >
+                                Ver / editar
+                            </a>
+                        </td>
+                    </tr>
+                            </tbody>
+        </table>
+    </div>
+</section>
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            var cuerpo = document.body;
+            var toggle = document.querySelector('[data-se-toggle]');
+            var overlay = document.querySelector('[data-se-overlay]');
+            var userBtn = document.querySelector('[data-se-user-toggle]');
+            var userMenu = document.querySelector('[data-se-user-menu]');
+            var movil = window.matchMedia('(max-width: 900px)');
+
+            function menu(abrir) {
+                cuerpo.classList.toggle('se-menu-abierto', abrir);
+                if (toggle) toggle.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+            }
+
+            function usuario(abrir) {
+                if (!userBtn || !userMenu) return;
+                userMenu.classList.toggle('abierto', abrir);
+                userBtn.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+            }
+
+            if (toggle) {
+                toggle.addEventListener('click', function () {
+                    menu(!cuerpo.classList.contains('se-menu-abierto'));
+                });
+            }
+
+            if (overlay) {
+                overlay.addEventListener('click', function () { menu(false); });
+            }
+
+            if (userBtn && userMenu) {
+                userBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    usuario(!userMenu.classList.contains('abierto'));
+                });
+
+                document.addEventListener('click', function (e) {
+                    if (!userMenu.contains(e.target)) usuario(false);
+                });
+            }
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key !== 'Escape') return;
+                var estabaAbierto = cuerpo.classList.contains('se-menu-abierto');
+                menu(false);
+                usuario(false);
+                if (estabaAbierto && toggle) toggle.focus();
+            });
+
+            var alCambiar = function (e) { if (!e.matches) menu(false); };
+            if (movil.addEventListener) movil.addEventListener('change', alCambiar);
+            else if (movil.addListener) movil.addListener(alCambiar);
+
+            window.addEventListener('pageshow', function () { menu(false); usuario(false); });
+
+            // Al cerrar sesión, la próxima entrada vuelve a mostrar la animación escalonada del menú.
+            document.querySelectorAll('[data-se-salir]').forEach(function (f) {
+                f.addEventListener('submit', function () {
+                    try { sessionStorage.removeItem('se-menu-visto'); } catch (e) {}
+                });
+            });
+        })();
+    </script>
+
+    <script src="http://localhost/js/tema.js" defer></script>
+
+    </body>
+</html>
