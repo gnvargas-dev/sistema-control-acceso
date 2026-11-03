@@ -9,6 +9,7 @@ use App\Models\Alumno;
 use App\Models\Asistencia;
 use App\Models\Materia;
 use App\Models\Usuario;
+use App\Reglas\PresentesTardanzasYJustificados;
 use Illuminate\Support\Collection;
 
 final class AsistenciaService
@@ -151,16 +152,24 @@ final class AsistenciaService
 
     /**
      * Porcentaje de asistencia del alumno para la API: cuentan como presentes
-     * las asistencias "presente", "tarde" y "justificado".
+     * las asistencias "presente", "tarde" y "justificado"
+     * (regla PresentesTardanzasYJustificados).
      *
      * @return array{total: int, presentes: int, porcentaje: int|float}
      */
     public function porcentajeDe(Alumno $alumno): array
     {
+        $regla = new PresentesTardanzasYJustificados();
+
+        $estadosQueCuentan = array_values(array_map(
+            fn (EstadoAsistencia $estado): string => $estado->value,
+            array_filter(EstadoAsistencia::cases(), $regla->cuenta(...))
+        ));
+
         $total = Asistencia::where('alumno_id', $alumno->id)->count();
 
         $presentes = Asistencia::where('alumno_id', $alumno->id)
-            ->whereIn('estado', ['presente', 'tarde', 'justificado'])
+            ->whereIn('estado', $estadosQueCuentan)
             ->count();
 
         return [
