@@ -9,7 +9,7 @@ use JsonSerializable;
 use Stringable;
 
 /**
- * Objeto de valor inmutable: una nota entera de 1 a 5 (escala del MEC de Paraguay).
+ * Objeto de valor inmutable: una nota entera de 1 a 5 (escala basada en la del sistema educativo paraguayo).
  *
  * Las notas que se cargan son siempre enteras (Calificacion::de). El promedio de varias
  * (Calificacion::promedioDe) puede tener decimales, pero también queda entre 1 y 5.

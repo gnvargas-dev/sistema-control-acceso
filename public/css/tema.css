@@ -1446,7 +1446,7 @@ body[class*="se-rol-"] .se-btn--peligro { --bc: var(--se-rojo); --bs: #a21f3a; }
 body[class*="se-rol-"] .se-btn--suave { --bc: var(--se-azul-suave); --bs: #c3d6f8; color: var(--se-azul-activo); }
 
 /* ==========================================================================
-   13. BADGES Y NOTAS (escala MEC 1-5)
+   13. BADGES Y NOTAS (escala de 1 a 5)
    ========================================================================== */
 body[class*="se-rol-"] .se-badge {
     display: inline-flex;

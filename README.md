@@ -16,7 +16,7 @@ El ingreso es con **cédula** y contraseña.
 
 ## Reglas de negocio
 
-- **Escala MEC (Paraguay):** notas enteras de 1 a 5; se aprueba con 2 o más (`Calificacion`).
+- **Escala de 1 a 5 (basada en la del sistema educativo paraguayo):** notas enteras de 1 a 5; se aprueba con 2 o más (`Calificacion`).
 - **Nota semestral:** parciales 60 % + examen final 40 %; se exige 70 % como mínimo en parciales y en examen por separado, de lo contrario la nota queda en 1 (`ResultadoSemestral`).
 - **Asistencia mínima:** 70 % (`AsistenciaMetricasService::MINIMO`).
 - Cada semestre admite de 2 a 5 parciales y un examen final (`EvaluacionService`).

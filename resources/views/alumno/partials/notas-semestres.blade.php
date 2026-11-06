@@ -1,5 +1,5 @@
 {{--
-    Calificaciones por semestre · escala MEC 1-5 · reglamento de Paraguay.
+    Calificaciones por semestre · escala de 1 a 5 (basada en la del sistema educativo paraguayo).
     Se incluye desde alumno/notas: @include('alumno.partials.notas-semestres', ['semestres' => $semestres])
 
     Todo viene calculado del servidor (EvaluacionService::semestresDelAlumno): esta vista no calcula notas.

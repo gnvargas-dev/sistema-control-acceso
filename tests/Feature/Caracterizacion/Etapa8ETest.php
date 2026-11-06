@@ -9,7 +9,7 @@ use Illuminate\Testing\TestResponse;
 /**
  * Etapa 8E: Cargar asistencias con el estilo unificado se-*, limpieza de estilos
  * incrustados en Cargar notas y Panel de control, y textos alineados con la regla real:
- * escala MEC 1 a 5 (aprueba con 2) y asistencia mínima del 70 %.
+ * escala de 1 a 5 (aprueba con 2) y asistencia mínima del 70 %.
  */
 class Etapa8ETest extends PantallaTestCase
 {

@@ -190,7 +190,7 @@
 
 /* ==========================================================================
    Etapa 7: paneles (indicador de menú, contadores, pestañas de semestre,
-   cálculo de nota final MEC 1-5). Bloque aparte: no toca el login.
+   cálculo de nota final, escala de 1 a 5). Bloque aparte: no toca el login.
    ========================================================================== */
 (function () {
     'use strict';
