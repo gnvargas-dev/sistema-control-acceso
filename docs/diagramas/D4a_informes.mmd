@@ -1,0 +1,78 @@
+---
+title: "D4a. Informes y ReporteService (Sistema Escolar)"
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction TB
+
+class Informe {
+  <<abstract>>
+  #readonly ReporteService reportes
+  +__construct(ReporteService reportes)
+  +tipo()* int
+  +datos(array filtros)* array
+  +titulo() string
+}
+
+class InformeResumenEjecutivo {
+  <<final>>
+  +tipo() int
+  +datos(array filtros) array
+}
+
+class InformeComparativoCursos {
+  <<final>>
+  +tipo() int
+  +datos(array filtros) array
+}
+
+class InformeCuadroHonor {
+  <<final>>
+  +tipo() int
+  +datos(array filtros) array
+}
+
+class InformeAlertaRiesgo {
+  <<final>>
+  +tipo() int
+  +datos(array filtros) array
+}
+
+class ReporteService {
+  <<final>>
+  +TITULOS = array de 4 títulos$
+  +pantalla(array filtros) array
+  +titulo(int tipo) string
+  +contextoDePdf(int tipo, array filtros) array
+  -informe(int tipo) Informe
+  +nombreDeArchivo(int tipo) string
+  +filtros(mixed desde, mixed hasta, mixed cursoId) array
+  +resumen(array filtros) array
+  -variacion(float actual, float anterior) ?float
+  -promedioEnPeriodo(Carbon desde, Carbon hasta, cursoId = null) float
+  -asistenciaEnPeriodo(Carbon desde, Carbon hasta, cursoId = null) float
+  -promedioAlumnoEnPeriodo(int alumnoId, Carbon desde, Carbon hasta) ?float
+  -asistenciaAlumnoEnPeriodo(int alumnoId, Carbon desde, Carbon hasta) ?float
+  +estadisticasCurso(Curso curso, array filtros) array
+  +promedioPorCurso(array filtros) Collection
+  +distribucionPromedios(array filtros) array
+  +cuadroDeHonor(array filtros, int limite = 20) array
+  +alertaRiesgo(array filtros) Collection
+  +notasPorMateria(?string periodo = null) Collection
+  +asistenciasPorMateria() Collection
+}
+
+Informe <|-- InformeResumenEjecutivo
+Informe <|-- InformeComparativoCursos
+Informe <|-- InformeCuadroHonor
+Informe <|-- InformeAlertaRiesgo
+
+Informe --> "1" ReporteService : reportes
+
+ReporteService ..> Informe : informe()
+ReporteService ..> InformeResumenEjecutivo : crea
+ReporteService ..> InformeComparativoCursos : crea
+ReporteService ..> InformeCuadroHonor : crea
+ReporteService ..> InformeAlertaRiesgo : crea

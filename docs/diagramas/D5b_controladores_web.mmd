@@ -1,0 +1,86 @@
+---
+title: "D5b. Controladores web (Sistema Escolar)"
+config:
+  class:
+    hideEmptyMembersBox: true
+    nodeSpacing: 12
+    rankSpacing: 120
+---
+classDiagram
+direction LR
+
+class AlumnosController
+class BoletinesController
+class LegajosController
+class MateriasController
+class PanelController
+class ReportesController
+class AlumnoController
+class ProfesorController
+class SesionController
+class UsuarioAdminController
+class AlumnoService {
+  <<final>>
+}
+class BoletinService {
+  <<final>>
+}
+class LegajoService {
+  <<final>>
+}
+class MateriaService {
+  <<final>>
+}
+class EstadisticasService {
+  <<final>>
+}
+class ReporteService {
+  <<final>>
+}
+class GeneradorReporte {
+  <<final>>
+}
+class PanelAlumnoService {
+  <<final>>
+}
+class EvaluacionService {
+  <<final>>
+}
+class DocenciaService {
+  <<final>>
+}
+class PanelProfesorService {
+  <<final>>
+}
+class NotaService {
+  <<final>>
+}
+class AsistenciaService {
+  <<final>>
+}
+class UsuarioService {
+  <<final>>
+}
+class AsistenciaMetricasService {
+  <<final>>
+}
+
+AlumnosController --> "1" AlumnoService
+BoletinesController --> "1" BoletinService
+LegajosController --> "1" LegajoService
+MateriasController --> "1" MateriaService
+PanelController --> "1" EstadisticasService
+ReportesController --> "1" ReporteService
+ReportesController --> "1" GeneradorReporte
+AlumnoController --> "1" PanelAlumnoService
+AlumnoController --> "1" EvaluacionService
+ProfesorController --> "1" DocenciaService
+ProfesorController --> "1" PanelProfesorService
+ProfesorController --> "1" NotaService
+ProfesorController --> "1" AsistenciaService
+ProfesorController --> "1" EvaluacionService
+UsuarioAdminController --> "1" UsuarioService
+AlumnoController ..> AsistenciaMetricasService : asistencia()
+ProfesorController ..> AsistenciaMetricasService : historialAsistencias()
+
+note "todos los controladores extienden Controller,<br/>una clase abstracta vacía"

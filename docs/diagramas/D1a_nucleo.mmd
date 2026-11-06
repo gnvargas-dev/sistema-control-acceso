@@ -1,0 +1,103 @@
+---
+title: "D1a. Dominio: núcleo académico (Sistema Escolar)"
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction TB
+
+class Usuario {
+  +string cedula
+  +string? email
+  +string password
+  +string nombre
+  +string rol
+  +bool activo
+  +es(...roles) bool
+  +rolObjeto() Rol
+  +perfil() ?Persona
+}
+
+class Persona {
+  <<abstract>>
+  -array ATRIBUTOS_COMUNES$
+  +bool activo
+  +__construct(attributes)
+  +identificador()* string
+  +descripcion()* string
+  +nombre() string
+  +cedula() string
+  +estaActivo() bool
+  +scopeActivos(consulta) Builder
+  +scopeInactivos(consulta) Builder
+}
+
+class Alumno {
+  +string? legajo
+  +date? fecha_nacimiento
+  +string? telefono
+  +string? foto
+  +identificador() string
+  +descripcion() string
+  +nuevoLegajo()$ string
+  +legajoLibre(anio, usados)$ string
+}
+
+class Profesor {
+  +identificador() string
+  +descripcion() string
+}
+
+class Curso {
+  +string nombre
+  +int anio
+  #booted()$ void
+  #nombre() Attribute
+}
+
+class Materia {
+  +string nombre
+  +bool activa
+}
+
+class Nota {
+  +string PREFIJO_SEMESTRE$
+  +decimal valor
+  +string periodo
+  +string? observacion
+  +calificacion() ?Calificacion
+  +asignarCalificacion(Calificacion|int|float|string calificacion) static
+  +scopeDeSemestres(query) Builder
+  +scopeParaPromedio(query, alumnoId) Builder
+}
+
+class Asistencia {
+  +date fecha
+  +string estado
+  +string? observacion
+  +estadoAsistencia() ?EstadoAsistencia
+  +marcar(EstadoAsistencia|string estado) static
+}
+
+Persona <|-- Alumno
+Persona <|-- Profesor
+
+Usuario "1" -- "0..1" Alumno
+Usuario "1" -- "0..1" Profesor
+Curso "1" -- "*" Alumno
+Curso "1" -- "*" Materia
+Profesor "*" -- "*" Materia : profesor_materia
+
+Alumno "1" -- "*" Nota
+Materia "1" -- "*" Nota
+Usuario "1" -- "*" Nota
+
+Alumno "1" -- "*" Asistencia
+Materia "1" -- "*" Asistencia
+Usuario "1" -- "*" Asistencia
+
+Usuario ..> Persona : perfil()
+
+note for Usuario "El esquema permite que un usuario tenga<br/>a la vez un alumno y un profesor. El código<br/>crea solo el perfil que corresponde a su rol."
+note for Materia "El esquema permite NULL en curso_id,<br/>pero la aplicación siempre exige curso."

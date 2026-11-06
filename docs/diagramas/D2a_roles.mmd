@@ -1,0 +1,108 @@
+---
+title: "D2a. Roles: jerarquía de Rol (Sistema Escolar)"
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction TB
+
+class Rol {
+  <<abstract>>
+  +clave()* RolUsuario
+  +rutaInicio()* string
+  +menu()* array
+  +perfilDe(Usuario usuario)* ?Persona
+  +veListadoDeAlumnos()* bool
+  +veAlumnosDeMateria(Usuario usuario, Materia materia)* bool
+  +veAlumno(Usuario usuario, Alumno alumno)* bool
+  +cargaDatosDeMateria(Usuario usuario, int|string|null materiaId)* bool
+  +esTitularDelRegistro(Usuario usuario, int|string|null alumnoId)* bool
+  +reglasDeRegistro()* array
+  +crearPerfil(int usuarioId, array datos, Collection materiaIds)* void
+  +nombre() string
+  +esUnoDe(string ...claves) bool
+  +desde(RolUsuario|string rol)$ self
+  +tryDesde(RolUsuario|string rol)$ ?self
+  -instanciar(RolUsuario clave)$ self
+}
+
+class RolAdministrador {
+  <<final>>
+  +clave() RolUsuario
+  +rutaInicio() string
+  +menu() array
+  +perfilDe(Usuario usuario) ?Persona
+  +veListadoDeAlumnos() bool
+  +veAlumnosDeMateria(Usuario usuario, Materia materia) bool
+  +veAlumno(Usuario usuario, Alumno alumno) bool
+  +cargaDatosDeMateria(Usuario usuario, int|string|null materiaId) bool
+  +esTitularDelRegistro(Usuario usuario, int|string|null alumnoId) bool
+  +reglasDeRegistro() array
+  +crearPerfil(int usuarioId, array datos, Collection materiaIds) void
+}
+
+class RolProfesor {
+  <<final>>
+  +clave() RolUsuario
+  +rutaInicio() string
+  +menu() array
+  +perfilDe(Usuario usuario) ?Persona
+  +veListadoDeAlumnos() bool
+  +veAlumnosDeMateria(Usuario usuario, Materia materia) bool
+  +veAlumno(Usuario usuario, Alumno alumno) bool
+  +cargaDatosDeMateria(Usuario usuario, int|string|null materiaId) bool
+  +esTitularDelRegistro(Usuario usuario, int|string|null alumnoId) bool
+  +reglasDeRegistro() array
+  +crearPerfil(int usuarioId, array datos, Collection materiaIds) void
+  -dictaLaMateria(Usuario usuario, int|string|null materiaId) bool
+}
+
+class RolAlumno {
+  <<final>>
+  +clave() RolUsuario
+  +rutaInicio() string
+  +menu() array
+  +perfilDe(Usuario usuario) ?Persona
+  +veListadoDeAlumnos() bool
+  +veAlumnosDeMateria(Usuario usuario, Materia materia) bool
+  +veAlumno(Usuario usuario, Alumno alumno) bool
+  +cargaDatosDeMateria(Usuario usuario, int|string|null materiaId) bool
+  +esTitularDelRegistro(Usuario usuario, int|string|null alumnoId) bool
+  +reglasDeRegistro() array
+  +crearPerfil(int usuarioId, array datos, Collection materiaIds) void
+}
+
+class ItemMenu {
+  <<final readonly>>
+  +string ruta
+  +string titulo
+  +string icono
+  +string? subtitulo
+  +__construct(ruta, titulo, icono, subtitulo)
+}
+
+class RolUsuario {
+  <<enumeration>>
+  Administrador = 'administrador'
+  Profesor = 'profesor'
+  Alumno = 'alumno'
+  +etiqueta() string
+}
+
+class Usuario
+
+Rol <|-- RolAdministrador
+Rol <|-- RolProfesor
+Rol <|-- RolAlumno
+
+Rol ..> RolAdministrador : crea
+Rol ..> RolProfesor : crea
+Rol ..> RolAlumno : crea
+Rol ..> RolUsuario
+RolAdministrador ..> ItemMenu : crea
+RolProfesor ..> ItemMenu : crea
+RolAlumno ..> ItemMenu : crea
+Usuario ..> Rol : rolObjeto()
+
+note for Usuario "Usuario se define en D1a. Tiene una sola columna rol,<br/>pero rolObjeto() crea un objeto Rol nuevo en cada llamada."

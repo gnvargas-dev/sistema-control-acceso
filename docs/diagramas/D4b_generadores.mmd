@@ -1,0 +1,60 @@
+---
+title: "D4b. Generadores de PDF y BoletinService (Sistema Escolar)"
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction RL
+
+class GeneradorDocumento {
+  <<interface>>
+  +vista()* string
+  +generar(array datos)* PDF
+}
+
+class GeneradorPdf {
+  <<abstract>>
+  +final generar(array datos) PDF
+  #configurar(PDF pdf) void
+}
+
+class GeneradorBoletin {
+  <<final>>
+  +vista() string
+}
+
+class GeneradorReporte {
+  <<final>>
+  +vista() string
+  #configurar(PDF pdf) void
+}
+
+class BoletinService {
+  <<final>>
+  -readonly GeneradorBoletin generador
+  +__construct(GeneradorBoletin generador = new GeneradorBoletin())
+  +pantalla(?string cursoId, ?string periodo, ?string busqueda) array
+  -historial(?string cursoId, ?string periodo, ?string busqueda) LengthAwarePaginator
+  -estadisticas() array
+  +alumnosParaBoletin(mixed alumnoId, mixed cursoId) Collection
+  +generar(Collection alumnos, string periodo, int|string|null generadoPor) int
+  +existeArchivo(BoletinGenerado boletin) bool
+  +descargar(BoletinGenerado boletin) StreamedResponse
+  +ver(BoletinGenerado boletin) BinaryFileResponse
+}
+
+class PDF {
+  <<DomPDF>>
+}
+
+GeneradorDocumento <|.. GeneradorPdf
+GeneradorPdf <|-- GeneradorReporte
+GeneradorPdf <|-- GeneradorBoletin
+
+BoletinService --> "1" GeneradorBoletin : generador
+
+GeneradorDocumento ..> PDF : generar()
+GeneradorPdf ..> PDF : generar(), configurar()
+
+note for PDF "PDF es la clase Barryvdh\\DomPDF\\PDF<br/>de la librería DomPDF. Aquí solo se muestra el nombre."

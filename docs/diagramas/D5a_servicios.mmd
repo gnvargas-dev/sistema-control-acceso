@@ -1,0 +1,74 @@
+---
+title: "D5a. Servicios de app/Services (Sistema Escolar)"
+config:
+  class:
+    hideEmptyMembersBox: true
+    nodeSpacing: 12
+    rankSpacing: 120
+---
+classDiagram
+direction LR
+
+class AlumnoService {
+  <<final>>
+}
+
+class AsistenciaMetricasService {
+  <<final>>
+}
+
+class AsistenciaService {
+  <<final>>
+}
+
+class BoletinService {
+  <<final>>
+}
+
+class DocenciaService {
+  <<final>>
+}
+
+class EstadisticasService {
+  <<final>>
+}
+
+class EvaluacionService {
+  <<final>>
+}
+
+class LegajoService {
+  <<final>>
+}
+
+class MateriaService {
+  <<final>>
+}
+
+class NotaService {
+  <<final>>
+}
+
+class PanelAlumnoService {
+  <<final>>
+}
+
+class PanelProfesorService {
+  <<final>>
+}
+
+class ReporteService {
+  <<final>>
+}
+
+class UsuarioService {
+  <<final>>
+}
+
+AsistenciaService --> "1" DocenciaService : docencia
+NotaService --> "1" DocenciaService : docencia
+PanelProfesorService --> "1" DocenciaService : docencia
+EvaluacionService --> "1" DocenciaService : docencia
+EvaluacionService --> "1" NotaService : notas
+
+note for BoletinService "BoletinService depende de GeneradorBoletin (ver D4b).<br/>ReporteService y BoletinService se muestran en D4."

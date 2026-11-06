@@ -1,0 +1,40 @@
+---
+title: "D3c. Enumeraciones de evaluación, nivel de asistencia y legajo (Sistema Escolar)"
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction LR
+
+class TipoEvaluacion {
+  <<enumeration>>
+  Parcial = 'parcial'
+  Examen = 'examen'
+  +etiqueta() string
+}
+
+class NivelAsistencia {
+  <<enumeration>>
+  Excelente = 'excelente'
+  Bueno = 'bueno'
+  Regular = 'regular'
+  Malo = 'malo'
+  +desdePorcentaje(float porcentaje)$ self
+  +etiqueta() string
+  +comoArreglo() array
+}
+
+class EstadoLegajo {
+  <<enumeration>>
+  SinDocumentos = 'sin_documentos'
+  Incompleto = 'incompleto'
+  Completo = 'completo'
+  +desdeConteo(int entregados, int total)$ self
+}
+
+class Evaluacion
+
+Evaluacion ..> TipoEvaluacion : tipo
+
+note for Evaluacion "Evaluacion se define en D1b.<br/>Aquí solo se muestra el nombre."

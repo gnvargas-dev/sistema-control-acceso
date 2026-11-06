@@ -1,0 +1,88 @@
+---
+title: "D3a. Valores: objetos de valor (Sistema Escolar)"
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction TB
+
+class Calificacion {
+  <<final>>
+  +MINIMA = 1.0$
+  +MAXIMA = 5.0$
+  +APROBACION = 2.0$
+  -readonly float valor
+  -__construct(float valor)
+  +de(int|float|string|self valor)$ self
+  +promedioDe(self ...calificaciones)$ ?self
+  +valor() float
+  +aprueba() bool
+  +igualA(self otra) bool
+  +texto(int decimales = 2) string
+  +jsonSerialize() float
+  +__toString() string
+}
+
+class ResultadoSemestral {
+  <<final>>
+  +PESO_PARCIALES = 60$
+  +PESO_EXAMEN = 40$
+  +MINIMO_POR_BLOQUE = 70$
+  -readonly int logradoParciales
+  -readonly int maximoParciales
+  -readonly int logradoExamen
+  -readonly int maximoExamen
+  -__construct(int logradoParciales, int maximoParciales, int logradoExamen, int maximoExamen)
+  +calcular(array parciales, int|float|string puntosExamen, int maximoExamen)$ self
+  -centesimas(int|float|string puntos, int max)$ int
+  +puntosParciales() float
+  +maximoParciales() int
+  +puntosExamen() float
+  +maximoExamen() int
+  +porcentajeParciales() float
+  +porcentajeExamen() float
+  +aporteParciales() float
+  +aporteExamen() float
+  +totalExacto() float
+  +total() int
+  +parcialesSuperan() bool
+  +examenSupera() bool
+  +candadoSuperado() bool
+  +nota() Calificacion
+  +aprueba() bool
+  +jsonSerialize() array
+  -numerador() int
+  -denominador() int
+}
+
+class PorcentajeAsistencia {
+  <<final>>
+  -readonly int contadas
+  -readonly int total
+  -__construct(int contadas, int total)
+  +deConteos(int contadas, int total)$ self
+  +deEstados(iterable estados, ReglaAsistencia regla)$ self
+  +sinRegistros()$ self
+  +contadas() int
+  +total() int
+  +esVacio() bool
+  +redondeado(int decimales = 1) ?float
+  +redondeadoOCero(int decimales = 1) int|float
+  +jsonSerialize() ?float
+}
+
+class Nota
+class ReglaAsistencia {
+  <<interface>>
+}
+class EstadoAsistencia {
+  <<enumeration>>
+}
+
+ResultadoSemestral ..> Calificacion : nota()
+Nota ..> Calificacion : calificacion()
+PorcentajeAsistencia ..> ReglaAsistencia : deEstados()
+PorcentajeAsistencia ..> EstadoAsistencia : deEstados()
+
+note for Nota "Nota (D1a), ReglaAsistencia y EstadoAsistencia (D3b)<br/>aparecen solo con el nombre."

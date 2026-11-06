@@ -1,0 +1,44 @@
+---
+title: "D2b. Roles: control de acceso (Sistema Escolar)"
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction LR
+
+class NotaPolicy {
+  +view(Usuario usuario, Nota nota) bool
+  +create(Usuario usuario, array datos) bool
+  +update(Usuario usuario, Nota nota) bool
+}
+
+class AsistenciaPolicy {
+  +view(Usuario usuario, Asistencia asistencia) bool
+  +create(Usuario usuario, array datos) bool
+  +update(Usuario usuario, Asistencia asistencia) bool
+}
+
+class AlumnoPolicy {
+  +viewAny(Usuario usuario) bool
+  +viewForMateria(Usuario usuario, Materia materia) bool
+  +view(Usuario usuario, Alumno alumno) bool
+}
+
+class CheckRole {
+  +handle(Request request, Closure next, ...roles) Response
+}
+
+class Usuario
+class Rol
+
+NotaPolicy ..> Usuario : recibe
+AsistenciaPolicy ..> Usuario : recibe
+AlumnoPolicy ..> Usuario : recibe
+NotaPolicy ..> Rol : delega vía Usuario#58;#58;rolObjeto()
+AsistenciaPolicy ..> Rol : delega vía Usuario#58;#58;rolObjeto()
+AlumnoPolicy ..> Rol : delega vía Usuario#58;#58;rolObjeto()
+Usuario ..> Rol : rolObjeto()
+
+note for CheckRole "CheckRole llama a es() sobre el usuario autenticado."
+note for Usuario "Usuario se define en D1a y Rol en D2a.<br/>Aquí solo se muestra el nombre."

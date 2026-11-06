@@ -1,0 +1,59 @@
+---
+title: "D1b. Dominio: evaluaciones, legajo y boletines (Sistema Escolar)"
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction TB
+
+class Evaluacion {
+  +int semestre
+  +TipoEvaluacion tipo
+  +int orden
+  +string nombre
+  +int puntos_max
+  +esParcial() bool
+  +scopeDelSemestre(query, materiaId, semestre) Builder
+  +scopeParciales(query) Builder
+  +scopeExamenes(query) Builder
+}
+
+class ResultadoEvaluacion {
+  +decimal puntos
+}
+
+class HistorialAcademico {
+  +string detalle
+  +string periodo
+}
+
+class DocumentoAlumno {
+  +string categoria
+  +string documento
+  +date? fecha_entrega
+}
+
+class BoletinGenerado {
+  +string periodo
+  +string archivo
+  +int descargas
+}
+
+class Alumno
+class Materia
+class Usuario
+class Curso
+
+Evaluacion "*" --> "1" Materia
+Evaluacion "1" -- "*" ResultadoEvaluacion
+ResultadoEvaluacion "*" --> "1" Alumno
+ResultadoEvaluacion "*" --> "1" Usuario
+
+Alumno "1" -- "*" HistorialAcademico
+Alumno "1" -- "*" DocumentoAlumno
+Alumno "1" -- "*" BoletinGenerado
+BoletinGenerado "*" --> "0..1" Curso
+BoletinGenerado "*" --> "0..1" Usuario
+
+note for Alumno "Alumno, Materia, Usuario y Curso se definen<br/>en D1a. Aquí solo se muestra el nombre."

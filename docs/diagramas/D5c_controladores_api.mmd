@@ -1,0 +1,50 @@
+---
+title: "D5c. Controladores de la API (Sistema Escolar)"
+config:
+  class:
+    hideEmptyMembersBox: true
+    nodeSpacing: 12
+    rankSpacing: 120
+---
+classDiagram
+direction LR
+
+class AsistenciaController
+class AuthController
+class BoletinController
+class HistorialAcademicoController
+class LegajoController
+class MateriaController
+class NotaController
+class RegistroAlumnoController
+class ReporteController
+class UsuarioController
+class AsistenciaService {
+  <<final>>
+}
+class UsuarioService {
+  <<final>>
+}
+class PanelAlumnoService {
+  <<final>>
+}
+class MateriaService {
+  <<final>>
+}
+class NotaService {
+  <<final>>
+}
+class ReporteService {
+  <<final>>
+}
+
+AsistenciaController --> "1" AsistenciaService
+AuthController --> "1" UsuarioService
+HistorialAcademicoController --> "1" PanelAlumnoService
+MateriaController --> "1" MateriaService
+NotaController --> "1" NotaService
+RegistroAlumnoController --> "1" MateriaService
+ReporteController --> "1" ReporteService
+UsuarioController --> "1" UsuarioService
+
+note "todos los controladores extienden Controller,<br/>una clase abstracta vacía"

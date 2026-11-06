@@ -1,0 +1,52 @@
+---
+title: "D3b. Reglas de asistencia (Sistema Escolar)"
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+direction LR
+
+class ReglaAsistencia {
+  <<interface>>
+  +cuenta(EstadoAsistencia estado)* bool
+}
+
+class SoloPresentes {
+  <<final>>
+  +cuenta(EstadoAsistencia estado) bool
+}
+
+class PresentesYTardanzas {
+  <<final>>
+  +cuenta(EstadoAsistencia estado) bool
+}
+
+class PresentesTardanzasYJustificados {
+  <<final>>
+  +cuenta(EstadoAsistencia estado) bool
+}
+
+class EstadoAsistencia {
+  <<enumeration>>
+  Presente = 'presente'
+  Ausente = 'ausente'
+  Tarde = 'tarde'
+  Justificado = 'justificado'
+  +desde(self|string estado)$ self
+  +etiqueta() string
+}
+
+class Asistencia
+
+ReglaAsistencia <|.. SoloPresentes
+ReglaAsistencia <|.. PresentesYTardanzas
+ReglaAsistencia <|.. PresentesTardanzasYJustificados
+
+SoloPresentes ..> EstadoAsistencia
+PresentesYTardanzas ..> EstadoAsistencia
+PresentesTardanzasYJustificados ..> EstadoAsistencia
+ReglaAsistencia ..> EstadoAsistencia
+Asistencia ..> EstadoAsistencia : estadoAsistencia()
+
+note for Asistencia "Asistencia se define en D1a.<br/>Aquí solo se muestra el nombre."
