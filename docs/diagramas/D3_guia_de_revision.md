@@ -1,6 +1,6 @@
 # D3. Valores y reglas (D3a, D3b y D3c): guía para revisar los diagramas contra el código
 
-Repositorio: `gnvargas-dev/sistema-escolar`, commit `c6e87b4`. Los archivos están en `app/Valores/`, `app/Reglas/` y `app/Enums/`.
+Repositorio: `gnvargas-dev/sistema-control-acceso`, commit `c6e87b4`. Los archivos están en `app/Valores/`, `app/Reglas/` y `app/Enums/`.
 
 ## Convenciones del dibujo
 

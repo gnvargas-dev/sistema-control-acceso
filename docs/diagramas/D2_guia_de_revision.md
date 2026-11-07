@@ -1,6 +1,6 @@
 # D2. Roles y permisos (D2a y D2b): guía para revisar los diagramas contra el código
 
-Repositorio: `gnvargas-dev/sistema-escolar`, commit `c6e87b4`. Los archivos están en `app/Roles/`, `app/Enums/`, `app/Policies/` y `app/Http/Middleware/`.
+Repositorio: `gnvargas-dev/sistema-control-acceso`, commit `c6e87b4`. Los archivos están en `app/Roles/`, `app/Enums/`, `app/Policies/` y `app/Http/Middleware/`.
 
 ## Convenciones del dibujo
 

@@ -1,6 +1,6 @@
 # D4. Informes y generadores de PDF (D4a y D4b): guía para revisar los diagramas contra el código
 
-Repositorio: `gnvargas-dev/sistema-escolar`, commit `c6e87b4`. Los archivos están en `app/Informes/`, `app/Documentos/` y `app/Services/`.
+Repositorio: `gnvargas-dev/sistema-control-acceso`, commit `c6e87b4`. Los archivos están en `app/Informes/`, `app/Documentos/` y `app/Services/`.
 
 ## Convenciones del dibujo
 

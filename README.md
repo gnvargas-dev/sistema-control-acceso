@@ -1,4 +1,4 @@
-# Sistema Escolar
+# Sistema de Control de Acceso Seguro
 
 Sistema de gestión escolar desarrollado con **Laravel** y PHP 8.3 (tipado estricto) en el marco del proyecto
 CodeFusion 2026 (Paradigmas de Programación). Permite administrar usuarios, cursos, materias, alumnos,

@@ -1,6 +1,6 @@
 # D1. Dominio (D1a y D1b): guía para revisar los diagramas contra el código
 
-Repositorio: `gnvargas-dev/sistema-escolar`, commit `c6e87b4`. Los modelos están en `app/Models/`; el esquema, en `database/migrations/`.
+Repositorio: `gnvargas-dev/sistema-control-acceso`, commit `c6e87b4`. Los modelos están en `app/Models/`; el esquema, en `database/migrations/`.
 
 ## Convenciones del dibujo
 
